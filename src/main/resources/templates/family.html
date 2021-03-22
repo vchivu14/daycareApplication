@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Family</title>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" rel="stylesheet">
+</head>
+<body>
+
+    <br>
+    <h2>Family</h2>
+    <br>
+
+    <div>
+        <table class="table table-hover table-responsive table-sm">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col">
+                    #
+                </th>
+                <th scope="col">
+                    Information
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">
+                    <p>Id</p>
+                </th>
+                <th>
+                    <p th:text="${family.getId()}"/>
+                </th>
+            </tr>
+            <tr>
+                <th scope="row">
+                    <p>Name</p>
+                </th>
+                <th>
+                    <p th:text="${family.getName()}"/>
+                </th>
+            </tr>
+            <tr>
+                <th scope="row">
+                    <p>Fees</p>
+                </th>
+                <th>
+                    <p th:text="${family.getFees()}"/>
+                </th>
+            </tr>
+            <tr>
+                <th scope="row">
+                    <p>Address</p>
+                </th>
+            </tr>
+            </tbody>
+        </table>
+        <a th:href="@{/families/}" class="btn btn-success" aria-pressed="true" role="button">Go Back</a>
+    </div>
+
+    <br>
+
+    <div>
+        <section class="container">
+            <h2>Parents</h2>
+            <table class="order-table table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                </tr>
+                </thead>
+                <tbody th:each="p : ${parents}">
+                <tr>
+                    <td th:text="${p.getId()}"></td>
+                    <td th:text="${p.getLastName()}"></td>
+                    <td th:text="${p.getFirstName()}"></td>
+                    <td><a th:href="@{/families/{idF}/parents/{idP}(idF=${familyId}, idP=${p.id})}"
+                           class="btn btn-warning" role="button">See</a></td>
+                </tr>
+                </tbody>
+            </table>
+            <br>
+            <a th:href="@{/families/{id}/parents/add(id=${familyId})}"
+               class="btn btn-primary" aria-pressed="true" role="button">Add a Parent</a>
+        </section>
+    </div>
+
+    <br>
+
+    <section class="container">
+        <h2>Children</h2>
+        <table class="order-table table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                </tr>
+            </thead>
+            <tbody th:each="c : ${children}">
+                <tr>
+                    <td th:text="${c.getId()}"></td>
+                    <td th:text="${c.getLastName()}"></td>
+                    <td th:text="${c.getFirstName()}"></td>
+                    <td><a th:href="@{/families/{idF}/children/{idC}(idF=${familyId}, idC=${c.getId()})}"
+                           class="btn btn-warning" role="button">See</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <td><a th:href="@{/families/{idF}/children/add(idF=${familyId})}"
+               class="btn btn-primary" aria-pressed="true" role="button">Add a Child</a></td>
+    </section>
+
+    <br>
+
+    <a th:href="@{/families/{id}/delete(id=${familyId})}"
+           class="btn btn-danger" aria-pressed="true" role="button">Delete this Group</a>
+    <br>
+
+</body>
+</html>
