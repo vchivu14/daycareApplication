@@ -1,6 +1,6 @@
 package com.standbystill.managementdaycare.controllers;
 
-import com.standbystill.managementdaycare.entities.Children;
+import com.standbystill.managementdaycare.entities.Child;
 import com.standbystill.managementdaycare.services.ChildrenCRUDService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,13 +35,13 @@ public class ChildrenController {
 
     @GetMapping("/families/{id}/children/add")
     public String retrieveChildModel(@PathVariable("id") int id, Model model) {
-        model.addAttribute("child", new Children());
+        model.addAttribute("child", new Child());
         model.addAttribute("familyId", id);
         return "childrenForm";
     }
 
     @PostMapping("/families/{id}/children/add")
-    public String addChild(@PathVariable("id") int id, @ModelAttribute Children child, Model model) {
+    public String addChild(@PathVariable("id") int id, @ModelAttribute Child child, Model model) {
         int childId = childrenCRUDService.addChild(child, id);
         model.addAttribute("familyId", id);
         model.addAttribute("childId", childId);

@@ -1,25 +1,25 @@
 package com.standbystill.managementdaycare.services;
 
-import com.standbystill.managementdaycare.entities.Children;
+import com.standbystill.managementdaycare.entities.Child;
 import com.standbystill.managementdaycare.entities.Family;
 
 import java.util.List;
 
 public interface ChildrenCRUDService {
-    List<Children> fetchAll();
+    List<Child> fetchAll();
 
-    List<Children> fetchChildrenForFamily(int familyId);
+    List<Child> fetchChildrenForFamily(int familyId);
 
     Family fetchFamilyForChildren(int familyId);
 
-    int addChild(Children child, int familyId);
+    int addChild(Child child, int familyId);
 
     boolean updateChild(String lastName, String firstName, int cpr, int id);
 
     boolean deleteChild(int id);
 
-    Children findChildById(int childId, int familyId);
+    Child findChildById(int childId, int familyId);
 
-    List<Children> findChildrenByLastName(String name);
+    List<Child> findChildrenByLastName(String name);
 
 }

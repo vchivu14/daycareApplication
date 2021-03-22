@@ -1,8 +1,9 @@
 package com.standbystill.managementdaycare.services;
 
-import com.standbystill.managementdaycare.entities.Children;
+import com.standbystill.managementdaycare.entities.Address;
+import com.standbystill.managementdaycare.entities.Child;
 import com.standbystill.managementdaycare.entities.Family;
-import com.standbystill.managementdaycare.entities.Parents;
+import com.standbystill.managementdaycare.entities.Parent;
 import com.standbystill.managementdaycare.repositories.FamilyRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,8 +22,8 @@ public class FamilyCRUDServiceImpl implements FamilyCRUDService {
     }
 
     @Override
-    public int addFamily(Family family) {
-        return familyRepo.addFamily(family);
+    public int addFamily(Family family, int addressId) {
+        return familyRepo.addFamily(family, addressId);
     }
 
     @Override
@@ -46,12 +47,12 @@ public class FamilyCRUDServiceImpl implements FamilyCRUDService {
     }
 
     @Override
-    public List<Parents> findParentsForFamily(int familyId) {
+    public List<Parent> findParentsForFamily(int familyId) {
         return familyRepo.findParentsForFamily(familyId);
     }
 
     @Override
-    public List<Children> findChildrenForFamily(int familyId) {
+    public List<Child> findChildrenForFamily(int familyId) {
         return familyRepo.findChildrenForFamily(familyId);
     }
 }

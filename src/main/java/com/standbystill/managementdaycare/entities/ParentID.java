@@ -3,14 +3,14 @@ package com.standbystill.managementdaycare.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class ParentsId implements Serializable {
+public class ParentID implements Serializable {
     private int id;
     private int familyId;
 
-    public ParentsId() {
+    public ParentID() {
     }
 
-    public ParentsId(int id, int familyId) {
+    public ParentID(int id, int familyId) {
         this.id = id;
         this.familyId = familyId;
     }
@@ -18,9 +18,9 @@ public class ParentsId implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof ParentsId)) return false;
-        ParentsId parentsId = (ParentsId) o;
-        return getId() == parentsId.getId() && getFamilyId() == parentsId.getFamilyId();
+        if (!(o instanceof ParentID)) return false;
+        ParentID parentID = (ParentID) o;
+        return getId() == parentID.getId() && getFamilyId() == parentID.getFamilyId();
     }
 
     @Override

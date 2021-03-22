@@ -1,7 +1,8 @@
 package com.standbystill.managementdaycare.repositories;
 
+import com.standbystill.managementdaycare.entities.CPR;
 import com.standbystill.managementdaycare.entities.Family;
-import com.standbystill.managementdaycare.entities.Parents;
+import com.standbystill.managementdaycare.entities.Parent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -23,16 +24,16 @@ public class ParentsRepoImpl implements ParentsRepo {
 
 
     @Override
-    public List<Parents> fetchAll() {
-        String sql="SELECT * FROM parents";
-        RowMapper<Parents> rowMapper = new BeanPropertyRowMapper<>(Parents.class);
+    public List<Parent> fetchAll() {
+        String sql="SELECT * FROM parent";
+        RowMapper<Parent> rowMapper = new BeanPropertyRowMapper<>(Parent.class);
         return jdbcTemplate.query(sql,rowMapper);
     }
 
     @Override
-    public List<Parents> fetchParentsForFamily(int familyId) {
-        String sql="SELECT * FROM parents WHERE Family_id=?";
-        RowMapper<Parents> rowMapper = new BeanPropertyRowMapper<>(Parents.class);
+    public List<Parent> fetchParentsForFamily(int familyId) {
+        String sql="SELECT * FROM parent WHERE Family_id=?";
+        RowMapper<Parent> rowMapper = new BeanPropertyRowMapper<>(Parent.class);
         return jdbcTemplate.query(sql,rowMapper,familyId);
     }
 
@@ -44,11 +45,11 @@ public class ParentsRepoImpl implements ParentsRepo {
     }
 
     @Override
-    public int addParent(Parents parent, int familyId) {
+    public int addParent(Parent parent, int familyId) {
         String lastName = parent.getLastName();
         String firstName = parent.getFirstName();
-        int cpr = parent.getCpr();
-        String sql = "INSERT INTO parents (FirstName, LastName, CPR, Family_id) VALUES (?, ?, ?, ?)";
+        CPR cpr = parent.getCpr();
+        String sql = "INSERT INTO parent (FirstName, LastName, CPR, Family_id) VALUES (?, ?, ?, ?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(new PreparedStatementCreator() {
             @Override
@@ -67,27 +68,27 @@ public class ParentsRepoImpl implements ParentsRepo {
 
     @Override
     public boolean updateParent(String lastName, String firstName, int cpr, int id) {
-        String sql = "UPDATE parents SET LastName = ?, FirstName = ?, CPR = ? WHERE id = ?";
+        String sql = "UPDATE parent SET LastName = ?, FirstName = ?, CPR = ? WHERE id = ?";
         return jdbcTemplate.update(sql,lastName,firstName,cpr,id)>=0;
     }
 
     @Override
     public boolean deleteParent(int parentId) {
-        String sql = "DELETE FROM parents WHERE id = ?";
+        String sql = "DELETE FROM parent WHERE id = ?";
         return jdbcTemplate.update(sql,parentId)>=0;
     }
 
     @Override
-    public Parents findParentById(int parentId) {
-        String sql = "SELECT * FROM parents WHERE id = ?";
-        RowMapper<Parents> rowMapper = new BeanPropertyRowMapper<>(Parents.class);
+    public Parent findParentById(int parentId) {
+        String sql = "SELECT * FROM parent WHERE id = ?";
+        RowMapper<Parent> rowMapper = new BeanPropertyRowMapper<>(Parent.class);
         return jdbcTemplate.queryForObject(sql,rowMapper,parentId);
     }
 
     @Override
-    public List<Parents> findParentsByLastName(String lastName) {
-        String sql = "SELECT * FROM parents WHERE LastName = ?";
-        RowMapper<Parents> rowMapper = new BeanPropertyRowMapper<>(Parents.class);
+    public List<Parent> findParentsByLastName(String lastName) {
+        String sql = "SELECT * FROM parent WHERE LastName = ?";
+        RowMapper<Parent> rowMapper = new BeanPropertyRowMapper<>(Parent.class);
         return jdbcTemplate.query(sql, rowMapper, lastName);
     }
 }

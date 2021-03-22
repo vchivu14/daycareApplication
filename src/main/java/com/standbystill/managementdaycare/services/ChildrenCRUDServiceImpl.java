@@ -1,6 +1,6 @@
 package com.standbystill.managementdaycare.services;
 
-import com.standbystill.managementdaycare.entities.Children;
+import com.standbystill.managementdaycare.entities.Child;
 import com.standbystill.managementdaycare.entities.Family;
 import com.standbystill.managementdaycare.repositories.ChildrenRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +14,12 @@ public class ChildrenCRUDServiceImpl implements ChildrenCRUDService {
     ChildrenRepo childrenRepo;
 
     @Override
-    public List<Children> fetchAll() {
+    public List<Child> fetchAll() {
         return childrenRepo.fetchAll();
     }
 
     @Override
-    public List<Children> fetchChildrenForFamily(int familyId) {
+    public List<Child> fetchChildrenForFamily(int familyId) {
         return childrenRepo.fetchChildrenForFamily(familyId);
     }
 
@@ -29,7 +29,7 @@ public class ChildrenCRUDServiceImpl implements ChildrenCRUDService {
     }
 
     @Override
-    public int addChild(Children child, int familyId) {
+    public int addChild(Child child, int familyId) {
         return childrenRepo.addChild(child,familyId);
     }
 
@@ -44,12 +44,12 @@ public class ChildrenCRUDServiceImpl implements ChildrenCRUDService {
     }
 
     @Override
-    public Children findChildById(int childId, int familyId) {
+    public Child findChildById(int childId, int familyId) {
         return childrenRepo.findChildById(childId,familyId);
     }
 
     @Override
-    public List<Children> findChildrenByLastName(String lastName) {
+    public List<Child> findChildrenByLastName(String lastName) {
         return childrenRepo.findChildrenByLastName(lastName);
     }
 }

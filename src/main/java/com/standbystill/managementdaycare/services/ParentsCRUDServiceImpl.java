@@ -1,7 +1,7 @@
 package com.standbystill.managementdaycare.services;
 
 import com.standbystill.managementdaycare.entities.Family;
-import com.standbystill.managementdaycare.entities.Parents;
+import com.standbystill.managementdaycare.entities.Parent;
 import com.standbystill.managementdaycare.repositories.ParentsRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,12 +14,12 @@ public class ParentsCRUDServiceImpl implements ParentsCRUDService {
     ParentsRepo parentsRepo;
 
     @Override
-    public List<Parents> fetchAll() {
+    public List<Parent> fetchAll() {
         return parentsRepo.fetchAll();
     }
 
     @Override
-    public List<Parents> fetchParentsForFamily(int familyId) {
+    public List<Parent> fetchParentsForFamily(int familyId) {
         return parentsRepo.fetchParentsForFamily(familyId);
     }
 
@@ -29,7 +29,7 @@ public class ParentsCRUDServiceImpl implements ParentsCRUDService {
     }
 
     @Override
-    public int addParent(Parents parent, int familyId) {
+    public int addParent(Parent parent, int familyId) {
         return parentsRepo.addParent(parent, familyId);
     }
 
@@ -44,12 +44,12 @@ public class ParentsCRUDServiceImpl implements ParentsCRUDService {
     }
 
     @Override
-    public Parents findParentById(int parentId) {
+    public Parent findParentById(int parentId) {
         return parentsRepo.findParentById(parentId);
     }
 
     @Override
-    public List<Parents> findParentsByLastName(String name) {
+    public List<Parent> findParentsByLastName(String name) {
         return parentsRepo.findParentsByLastName(name);
     }
 }

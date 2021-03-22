@@ -19,15 +19,15 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Last Name</th>
-                        <th>Fees</th>
+                        <th>Name</th>
+                        <th>Registration</th>
                     </tr>
                 </thead>
                 <tbody th:each="f : ${families}">
                     <tr>
                         <td th:text="${f.id}"></td>
                         <td th:text="${f.getName()}"></td>
-                        <td th:text="${f.getFees()}"></td>
+                        <td th:text="${f.getRegistration()}"></td>
                         <td><a th:href="@{/families/{id}(id=${f.id})}">See</a></td>
                     </tr>
                 </tbody>
@@ -35,7 +35,7 @@
         </section>
     </div>
     <br>
-    <a href="/families/add" class="btn btn-primary" aria-pressed="true" role="button">Add a Family</a>
+    <a href="/families/address/add" class="btn btn-primary" aria-pressed="true" role="button">Add a Family</a>
     <br>
     <br>
     <a href="/" class="btn btn-success" aria-pressed="true" role="button">Go Back</a>

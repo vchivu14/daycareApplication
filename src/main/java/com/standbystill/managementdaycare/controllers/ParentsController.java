@@ -1,6 +1,6 @@
 package com.standbystill.managementdaycare.controllers;
 
-import com.standbystill.managementdaycare.entities.Parents;
+import com.standbystill.managementdaycare.entities.Parent;
 import com.standbystill.managementdaycare.services.ParentsCRUDService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,13 +35,13 @@ public class ParentsController {
 
     @GetMapping("/families/{id}/parents/add")
     public String retrieveParentsModel(@PathVariable("id") int id, Model model) {
-        model.addAttribute("parent", new Parents());
+        model.addAttribute("parent", new Parent());
         model.addAttribute("familyId", id);
         return "parentsForm";
     }
 
     @PostMapping("/families/{id}/parents/add")
-    public String addParent(@PathVariable("id") int id, @ModelAttribute Parents parent, Model model) {
+    public String addParent(@PathVariable("id") int id, @ModelAttribute Parent parent, Model model) {
         int parentId = parentsCRUDService.addParent(parent, id);
         model.addAttribute("parent", parent);
         model.addAttribute("parentId", parentId);

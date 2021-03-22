@@ -1,8 +1,9 @@
 package com.standbystill.managementdaycare.repositories;
 
-import com.standbystill.managementdaycare.entities.Children;
+import com.standbystill.managementdaycare.entities.Address;
+import com.standbystill.managementdaycare.entities.Child;
 import com.standbystill.managementdaycare.entities.Family;
-import com.standbystill.managementdaycare.entities.Parents;
+import com.standbystill.managementdaycare.entities.Parent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -13,6 +14,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
@@ -30,17 +32,20 @@ public class FamilyRepoImpl implements FamilyRepo {
     }
 
     @Override
-    public int addFamily(Family family) {
+    public int addFamily(Family family, int addressId) {
         String name = family.getName();
-        Float fees = family.getFees();
-        String sql = "INSERT INTO family (Name, Fees) VALUES (?, ?)";
+        Date date = family.getRegistration();
+        int phone = family.getPhone();
+        String sql = "INSERT INTO family (Name, Registration, Phone, Address) VALUES (?,?,?,?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(new PreparedStatementCreator() {
             @Override
             public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
                 PreparedStatement ps = connection.prepareStatement(sql, new String[] {"id"});
                 ps.setString(1, name);
-                ps.setString(2, String.valueOf(fees));
+                ps.setString(2, String.valueOf(date));
+                ps.setString(3, String.valueOf(phone));
+                ps.setString(4, String.valueOf(addressId));
                 return ps;
             }
         }, keyHolder);
@@ -75,16 +80,16 @@ public class FamilyRepoImpl implements FamilyRepo {
     }
 
     @Override
-    public List<Parents> findParentsForFamily(int familyId) {
+    public List<Parent> findParentsForFamily(int familyId) {
         String sql = "SELECT * FROM parents WHERE Family_id= ?";
-        RowMapper<Parents> rowMapper = new BeanPropertyRowMapper<>(Parents.class);
+        RowMapper<Parent> rowMapper = new BeanPropertyRowMapper<>(Parent.class);
         return jdbcTemplate.query(sql,rowMapper,familyId);
     }
 
     @Override
-    public List<Children> findChildrenForFamily(int familyId) {
+    public List<Child> findChildrenForFamily(int familyId) {
         String sql = "SELECT * FROM children WHERE Family_id = ?";
-        RowMapper<Children> rowMapper = new BeanPropertyRowMapper<>(Children.class);
+        RowMapper<Child> rowMapper = new BeanPropertyRowMapper<>(Child.class);
         return jdbcTemplate.query(sql, rowMapper, familyId);
     }
 }

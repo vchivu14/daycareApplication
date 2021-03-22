@@ -1,15 +1,16 @@
 package com.standbystill.managementdaycare.services;
 
-import com.standbystill.managementdaycare.entities.Children;
+import com.standbystill.managementdaycare.entities.Address;
+import com.standbystill.managementdaycare.entities.Child;
 import com.standbystill.managementdaycare.entities.Family;
-import com.standbystill.managementdaycare.entities.Parents;
+import com.standbystill.managementdaycare.entities.Parent;
 
 import java.util.List;
 
 public interface FamilyCRUDService {
     List<Family> fetchAll();
 
-    int addFamily(Family family);
+    int addFamily(Family family, int addressId);
 
     boolean updateFamily(String name, int familyId);
 
@@ -19,7 +20,7 @@ public interface FamilyCRUDService {
 
     List<Family> findFamilyByName(String name);
 
-    List<Parents> findParentsForFamily(int familyId);
+    List<Parent> findParentsForFamily(int familyId);
 
-    List<Children> findChildrenForFamily(int familyId);
+    List<Child> findChildrenForFamily(int familyId);
 }
