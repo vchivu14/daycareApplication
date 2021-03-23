@@ -1,9 +1,12 @@
 package com.standbystill.managementdaycare.repositories;
 
 import com.standbystill.managementdaycare.entities.Address;
+import com.standbystill.managementdaycare.entities.Child;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
@@ -26,19 +29,22 @@ public class AddressRepoImpl implements AddressRepo {
         String country = address.getCountry();
         String sql = "INSERT INTO address (street, number, city, zipcode, country) VALUES (?,?,?,?,?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
-        jdbcTemplate.update(new PreparedStatementCreator() {
-            @Override
-            public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
-                PreparedStatement ps = connection.prepareStatement(sql, new String[] {"id"});
-                ps.setString(1, street);
-                ps.setString(2, String.valueOf(number));
-                ps.setString(3, city);
-                ps.setString(4, String.valueOf(zipcode));
-                ps.setString(5, country);
-                return ps;
-            }
+        jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement(sql, new String[] {"id"});
+            ps.setString(1, street);
+            ps.setString(2, String.valueOf(number));
+            ps.setString(3, city);
+            ps.setString(4, String.valueOf(zipcode));
+            ps.setString(5, country);
+            return ps;
         }, keyHolder);
-        int i = keyHolder.getKey().intValue();
-        return i;
+        return keyHolder.getKey().intValue();
+    }
+
+    @Override
+    public Address findAddressById(int id) {
+        String sql = "SELECT * FROM address WHERE id = ?";
+        RowMapper<Address> rowMapper = new BeanPropertyRowMapper<>(Address.class);
+        return jdbcTemplate.queryForObject(sql,rowMapper,id);
     }
 }

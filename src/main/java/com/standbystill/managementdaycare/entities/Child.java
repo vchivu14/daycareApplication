@@ -8,11 +8,6 @@ import java.io.Serializable;
 @Table(name = "child", schema = "daycare12")
 public class Child implements Serializable {
     @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-
-    @Id
     @Column(name = "Family_Id")
     private int familyId;
 
@@ -38,14 +33,6 @@ public class Child implements Serializable {
     private Person person;
 
     public Child() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public int getFamilyId() {
@@ -107,7 +94,6 @@ public class Child implements Serializable {
     @Override
     public String toString() {
         return "Child{" +
-                "id=" + id +
                 ", familyId=" + familyId +
                 ", personId=" + personId +
                 ", firstName='" + firstName + '\'' +

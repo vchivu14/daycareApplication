@@ -24,17 +24,19 @@ public class ChildrenController {
     @Autowired
     AddressCRUDService addressCRUDService;
 
-    @GetMapping("/families/{idF}/child/{idC}")
-    public String showChildrenForFamily(@PathVariable("idF") int idF, @PathVariable("idC") int idC, Model model) {
+    @GetMapping("/families/{idF}/child/{idP}")
+    public String showChildrenForFamily(@PathVariable("idF") int idF, @PathVariable("idP") int idP, Model model) {
         model.addAttribute("familyId", idF);
-        model.addAttribute("childId", idC);
-        model.addAttribute("child", childrenCRUDService.findChildById(idC,idF));
+        model.addAttribute("childId", idP);
+        model.addAttribute("child", childrenCRUDService.findChildById(idP));
+        model.addAttribute("person", personCRUDService.findPersonById(idP));
+        model.addAttribute("address", addressCRUDService.findAddressById(idP));
         return "child";
     }
 
-    @GetMapping("/families/{idF}/child/{idC}/delete")
-    public String deleteChild(@PathVariable("idF") int idF, @PathVariable("idC") int idC) {
-        Boolean delete = childrenCRUDService.deleteChild(idC);
+    @GetMapping("/families/{idF}/child/{idP}/delete")
+    public String deleteChild(@PathVariable("idF") int idF, @PathVariable("idP") int idP) {
+        boolean delete = childrenCRUDService.deleteChild(idP);
         if (delete) {
             return "redirect:/families/"+idF;
         } else {
@@ -94,8 +96,7 @@ public class ChildrenController {
         model.addAttribute("addressId", idA);
         model.addAttribute("personId", idP);
         model.addAttribute("child", child);
-        int childId = childrenCRUDService.addChild(child,idF,idP);
-        model.addAttribute("childId", childId);
+        childrenCRUDService.addChild(child,idF,idP);
         return "resultChild";
     }
 

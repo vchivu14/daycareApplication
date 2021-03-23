@@ -12,13 +12,13 @@ public interface ChildrenRepo {
 
     Family fetchFamilyForChildren(int familyId);
 
-    int addChild(Child child, int familyId, int personId);
+    void addChild(Child child, int familyId, int personId);
 
-    boolean updateChild(String firstName, String lastName, int age, int childId);
+    boolean updateChild(String firstName, String lastName, int age, int personId);
 
-    boolean deleteChild(int childId);
+    boolean deleteChild(int personId);
 
-    Child findChildById(int childId, int familyId);
+    Child findChildById(int personId);
 
     List<Child> findChildrenByLastName(String lastName);
 }

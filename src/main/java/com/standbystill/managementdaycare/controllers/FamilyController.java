@@ -23,12 +23,13 @@ public class FamilyController {
         model.addAttribute("family", familyCRUDService.findFamilyById(id));
         model.addAttribute("parents", familyCRUDService.findParentsForFamily(id));
         model.addAttribute("children", familyCRUDService.findChildrenForFamily(id));
+        model.addAttribute("address", addressCRUDService.findAddressById(id));
         return "family";
     }
 
     @GetMapping("/families/{id}/delete")
     public String deleteFamily(@PathVariable("id") int id) {
-        Boolean delete = familyCRUDService.deleteFamily(id);
+        boolean delete = familyCRUDService.deleteFamily(id);
         if (delete) {
             return "redirect:/";
         } else {
@@ -65,15 +66,5 @@ public class FamilyController {
         model.addAttribute("family", family);
         return "resultFamily";
     }
-
-//    @PostMapping("/families/tenant/{idT}/address/{idA}")
-//    public String addFamily(@PathVariable("idT") int idT, @PathVariable("idA") int idA, @ModelAttribute Family family, Model model) {
-//        model.addAttribute("tenantId", idT);
-//        model.addAttribute("addressId", idA);
-//        int familyId = familyCRUDService.addFamily(family,idA);
-//        model.addAttribute("family", family);
-//        model.addAttribute("familyId", familyId);
-//        return "redirect:/families/"+familyId;
-//    }
 
 }

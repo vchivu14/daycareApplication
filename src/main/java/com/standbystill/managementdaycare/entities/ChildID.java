@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class ChildID implements Serializable {
-    private int id;
     private int familyId;
     private int personId;
 
@@ -12,17 +11,8 @@ public class ChildID implements Serializable {
     }
 
     public ChildID(int id, int familyId, int personId) {
-        this.id = id;
         this.familyId = familyId;
         this.personId = personId;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public int getFamilyId() {
@@ -46,12 +36,11 @@ public class ChildID implements Serializable {
         if (this == o) return true;
         if (!(o instanceof ChildID)) return false;
         ChildID childID = (ChildID) o;
-        return getId() == childID.getId() && getFamilyId() == childID.getFamilyId() && getPersonId() == childID.getPersonId();
+        return getFamilyId() == childID.getFamilyId() && getPersonId() == childID.getPersonId();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getFamilyId(), getPersonId());
+        return Objects.hash(getFamilyId(), getPersonId());
     }
-
 }

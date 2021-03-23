@@ -29,8 +29,8 @@ public class ChildrenCRUDServiceImpl implements ChildrenCRUDService {
     }
 
     @Override
-    public int addChild(Child child, int familyId, int personId) {
-        return childrenRepo.addChild(child,familyId, personId);
+    public void addChild(Child child, int familyId, int personId) {
+        childrenRepo.addChild(child,familyId, personId);
     }
 
     @Override
@@ -39,13 +39,13 @@ public class ChildrenCRUDServiceImpl implements ChildrenCRUDService {
     }
 
     @Override
-    public boolean deleteChild(int id) {
-        return childrenRepo.deleteChild(id);
+    public boolean deleteChild(int personId) {
+        return childrenRepo.deleteChild(personId);
     }
 
     @Override
-    public Child findChildById(int childId, int familyId) {
-        return childrenRepo.findChildById(childId,familyId);
+    public Child findChildById(int personId) {
+        return childrenRepo.findChildById(personId);
     }
 
     @Override

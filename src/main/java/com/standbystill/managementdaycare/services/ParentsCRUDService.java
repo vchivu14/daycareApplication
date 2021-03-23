@@ -14,11 +14,11 @@ public interface ParentsCRUDService {
 
     int addParent(Parent parent, int familyId, int personId);
 
-    boolean updateParent(String firstName, String lastName, int age, String email, int phone, int income, int parentId);
+    boolean updateParent(String firstName, String lastName, int age, String email, int phone, int income, int personId);
 
-    boolean deleteParent(int parentId);
+    boolean deleteParent(int personId);
 
-    Parent findParentById(int parentId);
+    Parent findParentById(int personId);
 
     List<Parent> findParentsByLastName(String name);
 }

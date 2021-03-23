@@ -54,42 +54,38 @@ public class ParentsRepoImpl implements ParentsRepo {
         String sql = "INSERT INTO parent (FirstName, LastName, Age, Email, Phone, Income, Family_id, Person_id) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
-        jdbcTemplate.update(new PreparedStatementCreator() {
-            @Override
-            public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
-                PreparedStatement ps = connection.prepareStatement(sql, new String[] {"id"});
-                ps.setString(1,firstName);
-                ps.setString(2,lastName);
-                ps.setString(3, String.valueOf(age));
-                ps.setString(4, email);
-                ps.setString(5, String.valueOf(phone));
-                ps.setString(6, String.valueOf(income));
-                ps.setString(7, String.valueOf(familyId));
-                ps.setString(8, String.valueOf(personId));
-                return ps;
-            }
+        jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement(sql, new String[] {"id"});
+            ps.setString(1,firstName);
+            ps.setString(2,lastName);
+            ps.setString(3, String.valueOf(age));
+            ps.setString(4, email);
+            ps.setString(5, String.valueOf(phone));
+            ps.setString(6, String.valueOf(income));
+            ps.setString(7, String.valueOf(familyId));
+            ps.setString(8, String.valueOf(personId));
+            return ps;
         }, keyHolder);
-        int i = keyHolder.getKey().intValue();
-        return i;
+        return keyHolder.getKey().intValue();
     }
 
     @Override
-    public boolean updateParent(String firstName, String lastName, int age, String email, int phone, int income, int parentId) {
-        String sql = "UPDATE parent SET FirstName = ?, LastName = ?, Age = ?, Email = ?, Phone = ?, Income = ? WHERE id = ?";
-        return jdbcTemplate.update(sql,firstName,lastName,age,email,phone,income,parentId)>=0;
+    public boolean updateParent(String firstName, String lastName, int age, String email, int phone, int income, int personId) {
+        String sql = "UPDATE parent SET FirstName = ?, LastName = ?, Age = ?, Email = ?, Phone = ?, Income = ? WHERE Person_id = ?";
+        return jdbcTemplate.update(sql,firstName,lastName,age,email,phone,income,personId)>=0;
     }
 
     @Override
-    public boolean deleteParent(int parentId) {
-        String sql = "DELETE FROM parent WHERE id = ?";
-        return jdbcTemplate.update(sql,parentId)>=0;
+    public boolean deleteParent(int personId) {
+        String sql = "DELETE FROM parent WHERE Person_id = ?";
+        return jdbcTemplate.update(sql,personId)>=0;
     }
 
     @Override
-    public Parent findParentById(int parentId) {
-        String sql = "SELECT * FROM parent WHERE id = ?";
+    public Parent findParentById(int personId) {
+        String sql = "SELECT * FROM parent WHERE Person_id = ?";
         RowMapper<Parent> rowMapper = new BeanPropertyRowMapper<>(Parent.class);
-        return jdbcTemplate.queryForObject(sql,rowMapper,parentId);
+        return jdbcTemplate.queryForObject(sql,rowMapper,personId);
     }
 
     @Override

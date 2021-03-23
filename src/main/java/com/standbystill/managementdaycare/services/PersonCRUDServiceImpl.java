@@ -14,4 +14,9 @@ public class PersonCRUDServiceImpl implements PersonCRUDService {
     public int addPerson(Person person, int addressId) {
         return personRepo.addPerson(person, addressId);
     }
+
+    @Override
+    public Person findPersonById(int personId) {
+        return personRepo.findPersonById(personId);
+    }
 }

@@ -28,7 +28,7 @@
                 <p>Id</p>
             </th>
             <th>
-                <p th:text="${child.getId()}"/>
+                <p th:text="${child.getPersonId()}"/>
             </th>
         </tr>
         <tr>
@@ -55,14 +55,22 @@
                 <p th:text="${child.getAge()}"/>
             </th>
         </tr>
+        <tr>
+            <th scope="row">
+                <p>CPR</p>
+            </th>
+            <th>
+                <p th:text="${person.getCpr()}"/>
+            </th>
+        </tr>
         </tbody>
     </table>
     <a th:href="@{/families/{id}(id=${familyId})}" class="btn btn-success" aria-pressed="true" role="button">Go Back</a>
     <br>
 
     <br>
-    <td><a th:href="@{/families/{idF}/child/{idC}/delete(idF=${familyId},idC=${childId})}"
-           class="btn btn-danger" aria-pressed="true" role="button">Delete this Person</a> </td>
+    <a th:href="@{/families/{idF}/child/{idC}/delete(idF=${familyId},idC=${childId})}"
+           class="btn btn-danger" aria-pressed="true" role="button">Delete this Person</a>
     <br>
 
 </body>

@@ -33,18 +33,18 @@ public class ParentsCRUDServiceImpl implements ParentsCRUDService {
         return parentsRepo.addParent(parent, familyId, personId);
     }
     @Override
-    public boolean updateParent(String firstName, String lastName, int age, String email, int phone, int income, int parentId) {
-        return parentsRepo.updateParent(firstName,lastName,age,email,phone,income,parentId);
+    public boolean updateParent(String firstName, String lastName, int age, String email, int phone, int income, int personId) {
+        return parentsRepo.updateParent(firstName,lastName,age,email,phone,income,personId);
     }
 
     @Override
-    public boolean deleteParent(int parentId) {
-        return parentsRepo.deleteParent(parentId);
+    public boolean deleteParent(int personId) {
+        return parentsRepo.deleteParent(personId);
     }
 
     @Override
-    public Parent findParentById(int parentId) {
-        return parentsRepo.findParentById(parentId);
+    public Parent findParentById(int personId) {
+        return parentsRepo.findParentById(personId);
     }
 
     @Override

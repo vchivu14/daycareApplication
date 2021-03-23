@@ -14,4 +14,9 @@ public class AddressCRUDServiceImpl implements AddressCRUDService {
     public int addAddress(Address address) {
         return addressRepo.addAddress(address);
     }
+
+    @Override
+    public Address findAddressById(int id) {
+        return addressRepo.findAddressById(id);
+    }
 }
