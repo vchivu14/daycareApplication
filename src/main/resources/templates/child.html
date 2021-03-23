@@ -49,10 +49,10 @@
         </tr>
         <tr>
             <th scope="row">
-                <p>CPR</p>
+                <p>Age</p>
             </th>
             <th>
-                <p th:text="${child.getCpr()}"/>
+                <p th:text="${child.getAge()}"/>
             </th>
         </tr>
         </tbody>
@@ -61,7 +61,7 @@
     <br>
 
     <br>
-    <td><a th:href="@{/families/{idF}/children/{idC}/delete(idF=${familyId},idC=${childId})}"
+    <td><a th:href="@{/families/{idF}/child/{idC}/delete(idF=${familyId},idC=${childId})}"
            class="btn btn-danger" aria-pressed="true" role="button">Delete this Person</a> </td>
     <br>
 

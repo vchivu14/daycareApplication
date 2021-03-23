@@ -108,13 +108,13 @@
                     <td th:text="${c.getId()}"></td>
                     <td th:text="${c.getLastName()}"></td>
                     <td th:text="${c.getFirstName()}"></td>
-                    <td><a th:href="@{/families/{idF}/children/{idC}(idF=${familyId}, idC=${c.getId()})}"
+                    <td><a th:href="@{/families/{idF}/child/{idC}(idF=${familyId}, idC=${c.id})}"
                            class="btn btn-warning" role="button">See</a></td>
                 </tr>
             </tbody>
         </table>
         <br>
-        <td><a th:href="@{/families/{idF}/children/add(idF=${familyId})}"
+        <td><a th:href="@{/families/{idF}/address/child/(idF=${familyId})}"
                class="btn btn-primary" aria-pressed="true" role="button">Add a Child</a></td>
     </section>
 

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+</head>
+<body>
+<br>
+<h2>Child Registration</h2>
+<br>
+<div>
+    <form th:action="@{/families/{idF}/address/{idA}/person/child(idF=${familyID}, idA=${addressId})}" th:object="${person}" method="post">
+        <div class="form-row">
+            <div class="col-xs-3 mb-3">
+                <label for="cpr">
+                    <input type="text" class="form-control" id="cpr" placeholder="CPR" required
+                           th:field="*{cpr}">
+                </label>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+</div>
+</body>
+</html>
