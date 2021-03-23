@@ -53,9 +53,9 @@ public class FamilyRepoImpl implements FamilyRepo {
     }
 
     @Override
-    public boolean updateFamily(String name, int familyId) {
-        String sql = "UPDATE family SET Name = ? WHERE id = ?";
-        return jdbcTemplate.update(sql,name,familyId)>=0;
+    public boolean updateFamily(String name, int phone, int familyId) {
+        String sql = "UPDATE family SET Name = ?, Phone = ? WHERE id = ?";
+        return jdbcTemplate.update(sql,name,phone,familyId)>=0;
     }
 
     @Override

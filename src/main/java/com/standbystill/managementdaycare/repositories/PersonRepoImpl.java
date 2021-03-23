@@ -18,13 +18,16 @@ public class PersonRepoImpl implements PersonRepo {
     JdbcTemplate jdbcTemplate;
 
     @Override
-    public int addPerson(Person person) {
-        String sql = "INSERT INTO person VALUES ()";
+    public int addPerson(Person person, int addressId) {
+        int CPR = person.getCpr();
+        String sql = "INSERT INTO person (CPR, Address_id) VALUES (?,?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(new PreparedStatementCreator() {
             @Override
             public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
                 PreparedStatement ps = connection.prepareStatement(sql, new String[] {"id"});
+                ps.setString(1, String.valueOf(CPR));
+                ps.setString(2, String.valueOf(addressId));
                 return ps;
             }
         }, keyHolder);

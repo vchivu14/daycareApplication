@@ -29,13 +29,13 @@ public class ChildrenCRUDServiceImpl implements ChildrenCRUDService {
     }
 
     @Override
-    public int addChild(Child child, int familyId) {
-        return childrenRepo.addChild(child,familyId);
+    public int addChild(Child child, int familyId, int personId) {
+        return childrenRepo.addChild(child,familyId, personId);
     }
 
     @Override
-    public boolean updateChild(String lastName, String firstName, int cpr, int id) {
-        return childrenRepo.updateChild(lastName,firstName,cpr,id);
+    public boolean updateChild(String firstName, String lastName, int age, int childId) {
+        return childrenRepo.updateChild(firstName,lastName,age,childId);
     }
 
     @Override

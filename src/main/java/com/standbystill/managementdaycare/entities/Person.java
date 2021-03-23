@@ -11,8 +11,12 @@ public class Person implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @OneToOne(mappedBy = "person", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private CPR cpr;
+    @Column(name = "CPR")
+    private int cpr;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Address_id", insertable=false, updatable=false)
+    private Address address;
 
     public Person() {
     }
@@ -25,12 +29,20 @@ public class Person implements Serializable {
         this.id = id;
     }
 
-    public CPR getCpr() {
+    public int getCpr() {
         return cpr;
     }
 
-    public void setCpr(CPR cpr) {
+    public void setCpr(int cpr) {
         this.cpr = cpr;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     @Override
@@ -38,6 +50,7 @@ public class Person implements Serializable {
         return "Person{" +
                 "id=" + id +
                 ", cpr=" + cpr +
+                ", address=" + address +
                 '}';
     }
 }

@@ -11,7 +11,7 @@ public class PersonCRUDServiceImpl implements PersonCRUDService {
     PersonRepo personRepo;
 
     @Override
-    public int addPerson(Person person) {
-        return personRepo.addPerson(person);
+    public int addPerson(Person person, int addressId) {
+        return personRepo.addPerson(person, addressId);
     }
 }

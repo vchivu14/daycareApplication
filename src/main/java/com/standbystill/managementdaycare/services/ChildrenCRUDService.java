@@ -12,9 +12,9 @@ public interface ChildrenCRUDService {
 
     Family fetchFamilyForChildren(int familyId);
 
-    int addChild(Child child, int familyId);
+    int addChild(Child child, int familyId, int personId);
 
-    boolean updateChild(String lastName, String firstName, int cpr, int id);
+    boolean updateChild(String firstName, String lastName, int age, int childId);
 
     boolean deleteChild(int id);
 

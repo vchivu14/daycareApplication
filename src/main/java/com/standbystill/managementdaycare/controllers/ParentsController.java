@@ -1,9 +1,9 @@
 package com.standbystill.managementdaycare.controllers;
 
-import com.standbystill.managementdaycare.entities.CPR;
+import com.standbystill.managementdaycare.entities.Address;
 import com.standbystill.managementdaycare.entities.Parent;
 import com.standbystill.managementdaycare.entities.Person;
-import com.standbystill.managementdaycare.services.CPRCRUDService;
+import com.standbystill.managementdaycare.services.AddressCRUDService;
 import com.standbystill.managementdaycare.services.ParentsCRUDService;
 import com.standbystill.managementdaycare.services.PersonCRUDService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +19,9 @@ public class ParentsController {
     @Autowired
     ParentsCRUDService parentsCRUDService;
     @Autowired
-    CPRCRUDService cprcrudService;
-    @Autowired
     PersonCRUDService personCRUDService;
+    @Autowired
+    AddressCRUDService addressCRUDService;
 
     @GetMapping("/families/{idF}/parent/{idP}")
     public String showParentForFamily(@PathVariable("idF") int idF, @PathVariable("idP") int idP, Model model) {
@@ -41,59 +41,61 @@ public class ParentsController {
         }
     }
 
-    @GetMapping("/families/{idF}/person")
-    public String retrievePersonModel(@PathVariable("idF") int idF, Model model) {
+    @GetMapping("/families/{idF}/address/parent")
+    public String retrieveAddressModel(@PathVariable("idF") int idF, Model model) {
         model.addAttribute("familyID", idF);
-        model.addAttribute("person", new Person());
-        return "personForm";
+        model.addAttribute("address", new Address());
+        return "formAddressP";
     }
 
-    @PostMapping("/families/{idF}/person")
-    public String addPerson(@PathVariable("idF") int idF, @ModelAttribute Person person, Model model) {
+    @PostMapping("/families/{idF}/address/parent")
+    public String addAddress(@PathVariable("idF") int idF, @ModelAttribute Address address, Model model) {
         model.addAttribute("familyID", idF);
-        int personId = personCRUDService.addPerson(person);
+        int addressId = addressCRUDService.addAddress(address);
+        model.addAttribute("address", address);
+        model.addAttribute("addressId", addressId);
+        return "resultAddressP";
+    }
+
+    @GetMapping("/families/{idF}/address/{idA}/person/parent")
+    public String retrievePersonModel(@PathVariable("idF") int idF, @PathVariable("idA") int idA, Model model) {
+        model.addAttribute("familyID", idF);
+        model.addAttribute("addressId", idA);
+        model.addAttribute("person", new Person());
+        return "formPerson";
+    }
+
+    @PostMapping("/families/{idF}/address/{idA}/person/parent")
+    public String addPerson(@PathVariable("idF") int idF, @PathVariable("idA") int idA,
+                            @ModelAttribute Person person, Model model) {
+        model.addAttribute("familyID", idF);
+        model.addAttribute("addressId", idA);
+        int personId = personCRUDService.addPerson(person, idA);
         model.addAttribute("person", person);
         model.addAttribute("personId", personId);
         return "resultPerson";
     }
 
-    @GetMapping("/families/{idF}/person/{idP}/cpr")
-    public String retrieveCprModel(@PathVariable("idF") int idF, @PathVariable("idP") int idP, Model model) {
+    @GetMapping("/families/{idF}/address/{idA}/person/{idP}/parent")
+    public String retrieveParentModel(@PathVariable("idF") int idF, @PathVariable("idA") int idA,
+                                      @PathVariable("idP") int idP, Model model) {
         model.addAttribute("familyID", idF);
+        model.addAttribute("addressId", idA);
         model.addAttribute("personId", idP);
-        model.addAttribute("cpr", new CPR());
-        return "CPRForm";
-    }
-
-    @PostMapping("/families/{idF}/person/{idP}/cpr")
-    public String addCpr(@PathVariable("idF") int idF, @PathVariable("idP") int idP,
-                         @ModelAttribute CPR cpr, Model model) {
-        model.addAttribute("familyID", idF);
-        model.addAttribute("personId", idP);
-        int cprId = cprcrudService.addCPR(cpr, idP);
-        model.addAttribute("cprId", cprId);
-        return "resultCPR";
-    }
-
-    @GetMapping("/families/{idF}/person/{idP}/cpr/{idC}/parent")
-    public String retrieveParentsModel(@PathVariable("idF") int idF, @PathVariable("idP") int idP,
-                                       @PathVariable("idC") int idC, Model model) {
-        model.addAttribute("familyID", idF);
-        model.addAttribute("personId", idP);
-        model.addAttribute("cprId", idC);
         model.addAttribute("parent", new Parent());
-        return "parentForm";
+        return "formParent";
     }
 
-    @PostMapping("/families/{idF}/person/{idP}/cpr/{idC}/parent")
-    public String addParent(@PathVariable("idF") int idF, @PathVariable("idP") int idP,
-                            @PathVariable("idC") int idC, @ModelAttribute Parent parent, Model model) {
-        model.addAttribute("familyId", idF);
+    @PostMapping("/families/{idF}/address/{idA}/person/{idP}/parent")
+    public String addParent(@PathVariable("idF") int idF, @PathVariable("idA") int idA, @PathVariable("idP") int idP,
+                         @ModelAttribute Parent parent, Model model) {
+        model.addAttribute("familyID", idF);
+        model.addAttribute("addressId", idA);
         model.addAttribute("personId", idP);
-        model.addAttribute("cprId", idC);
-        int parentId = parentsCRUDService.addParent(parent, idF, idC);
         model.addAttribute("parent", parent);
+        int parentId = parentsCRUDService.addParent(parent,idF,idP);
         model.addAttribute("parentId", parentId);
         return "resultParent";
     }
+
 }

@@ -1,6 +1,5 @@
 package com.standbystill.managementdaycare.repositories;
 
-import com.standbystill.managementdaycare.entities.CPR;
 import com.standbystill.managementdaycare.entities.Family;
 import com.standbystill.managementdaycare.entities.Parent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,14 +44,14 @@ public class ParentsRepoImpl implements ParentsRepo {
     }
 
     @Override
-    public int addParent(Parent parent, int familyId, int cprId) {
+    public int addParent(Parent parent, int familyId, int personId) {
         String lastName = parent.getLastName();
         String firstName = parent.getFirstName();
         int age = parent.getAge();
         String email = parent.getEmail();
         int phone = parent.getPhone();
         int income = parent.getIncome();
-        String sql = "INSERT INTO parent (FirstName, LastName, Age, Email, Phone, CPR, Family_id, Income) " +
+        String sql = "INSERT INTO parent (FirstName, LastName, Age, Email, Phone, Income, Family_id, Person_id) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(new PreparedStatementCreator() {
@@ -64,9 +63,9 @@ public class ParentsRepoImpl implements ParentsRepo {
                 ps.setString(3, String.valueOf(age));
                 ps.setString(4, email);
                 ps.setString(5, String.valueOf(phone));
-                ps.setString(6, String.valueOf(cprId));
+                ps.setString(6, String.valueOf(income));
                 ps.setString(7, String.valueOf(familyId));
-                ps.setString(8, String.valueOf(income));
+                ps.setString(8, String.valueOf(personId));
                 return ps;
             }
         }, keyHolder);
@@ -75,9 +74,9 @@ public class ParentsRepoImpl implements ParentsRepo {
     }
 
     @Override
-    public boolean updateParent(String lastName, String firstName, int cpr, int id) {
-        String sql = "UPDATE parent SET LastName = ?, FirstName = ?, CPR = ? WHERE id = ?";
-        return jdbcTemplate.update(sql,lastName,firstName,cpr,id)>=0;
+    public boolean updateParent(String firstName, String lastName, int age, String email, int phone, int income, int parentId) {
+        String sql = "UPDATE parent SET FirstName = ?, LastName = ?, Age = ?, Email = ?, Phone = ?, Income = ? WHERE id = ?";
+        return jdbcTemplate.update(sql,firstName,lastName,age,email,phone,income,parentId)>=0;
     }
 
     @Override

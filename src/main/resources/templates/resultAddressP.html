@@ -9,7 +9,7 @@
 <body>
 
 <br>
-<p>Parent successfully added</p>
+<p>Address successfully added</p>
 <br>
 <table class="table table-hover table-responsive table-sm">
     <thead class="thead-light">
@@ -25,57 +25,49 @@
     <tbody>
     <tr>
         <th scope="row">
-            <p>Last Name</p>
+            <p>Street</p>
         </th>
         <th>
-            <p th:text="${parent.getLastName()}"/>
+            <p th:text="${address.getStreet()}"/>
         </th>
     </tr>
     <tr>
         <th scope="row">
-            <p>FirstName</p>
+            <p>No</p>
         </th>
         <th>
-            <p th:text="${parent.getFirstName()}"/>
+            <p th:text="${address.getNumber()}"/>
         </th>
     </tr>
     <tr>
         <th scope="row">
-            <p>Age</p>
+            <p>City</p>
         </th>
         <th>
-            <p th:text="${parent.getAge()}"/>
+            <p th:text="${address.getCity()}"/>
         </th>
     </tr>
     <tr>
         <th scope="row">
-            <p>Email</p>
+            <p>Zipcode</p>
         </th>
         <th>
-            <p th:text="${parent.getEmail()}"/>
+            <p th:text="${address.getZipcode()}"/>
         </th>
     </tr>
     <tr>
         <th scope="row">
-            <p>Phone</p>
+            <p>Country</p>
         </th>
         <th>
-            <p th:text="${parent.getPhone()}"/>
-        </th>
-    </tr>
-    <tr>
-        <th scope="row">
-            <p>Income</p>
-        </th>
-        <th>
-            <p th:text="${parent.getIncome()}"/>
+            <p th:text="${address.getCountry()}"/>
         </th>
     </tr>
     </tbody>
 </table>
 <br>
-<a th:href="@{/families/{id}(id=${familyID})}"
-   class="btn btn-success" aria-pressed="true" role="button">Continue To Family</a>
+<a th:href="@{/families/{idF}/address/{idA}/person/parent(idF=${familyID},idA=${addressId})}"
+   class="btn btn-success" aria-pressed="true" role="button">Continue Registration</a>
 
 </body>
 </html>

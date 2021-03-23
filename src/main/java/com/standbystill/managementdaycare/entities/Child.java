@@ -16,6 +16,10 @@ public class Child implements Serializable {
     @Column(name = "Family_Id")
     private int familyId;
 
+    @Id
+    @Column(name = "Person_id")
+    private int personId;
+
     @Column(name = "FirstName")
     private String firstName;
     @Column(name = "LastName")
@@ -28,9 +32,10 @@ public class Child implements Serializable {
     @JoinColumn(name = "Family_id", referencedColumnName = "id", insertable=false, updatable=false)
     private Family family;
 
+    @Id
     @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "CPR", nullable = false)
-    private CPR cpr;
+    @JoinColumn(name = "Person_id", referencedColumnName = "id", insertable=false, updatable=false)
+    private Person person;
 
     public Child() {
     }
@@ -49,6 +54,14 @@ public class Child implements Serializable {
 
     public void setFamilyId(int familyId) {
         this.familyId = familyId;
+    }
+
+    public int getPersonId() {
+        return personId;
+    }
+
+    public void setPersonId(int personId) {
+        this.personId = personId;
     }
 
     public String getFirstName() {
@@ -75,12 +88,20 @@ public class Child implements Serializable {
         this.age = age;
     }
 
-    public CPR getCpr() {
-        return cpr;
+    public Family getFamily() {
+        return family;
     }
 
-    public void setCpr(CPR cpr) {
-        this.cpr = cpr;
+    public void setFamily(Family family) {
+        this.family = family;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     @Override
@@ -88,10 +109,10 @@ public class Child implements Serializable {
         return "Child{" +
                 "id=" + id +
                 ", familyId=" + familyId +
+                ", personId=" + personId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", age=" + age +
-                ", cpr=" + cpr +
                 '}';
     }
 }

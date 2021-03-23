@@ -18,13 +18,13 @@ public class AddressRepoImpl implements AddressRepo {
     JdbcTemplate jdbcTemplate;
 
     @Override
-    public int addAddress(Address address, int tenantId) {
+    public int addAddress(Address address) {
         String street = address.getStreet();
         int number = address.getNumber();
         String city = address.getCity();
         int zipcode = address.getZipcode();
         String country = address.getCountry();
-        String sql = "INSERT INTO address (street, number, city, zipcode, country,Tenant_id) VALUES (?,?,?,?,?,?)";
+        String sql = "INSERT INTO address (street, number, city, zipcode, country) VALUES (?,?,?,?,?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(new PreparedStatementCreator() {
             @Override
@@ -35,7 +35,6 @@ public class AddressRepoImpl implements AddressRepo {
                 ps.setString(3, city);
                 ps.setString(4, String.valueOf(zipcode));
                 ps.setString(5, country);
-                ps.setString(6, String.valueOf(tenantId));
                 return ps;
             }
         }, keyHolder);

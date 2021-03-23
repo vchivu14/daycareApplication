@@ -12,7 +12,7 @@ public interface FamilyCRUDService {
 
     int addFamily(Family family, int addressId);
 
-    boolean updateFamily(String name, int familyId);
+    boolean updateFamily(String name, int phone, int familyId);
 
     boolean deleteFamily(int familyId);
 

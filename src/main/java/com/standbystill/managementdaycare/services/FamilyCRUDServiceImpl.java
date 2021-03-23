@@ -27,8 +27,8 @@ public class FamilyCRUDServiceImpl implements FamilyCRUDService {
     }
 
     @Override
-    public boolean updateFamily(String name, int familyId) {
-        return familyRepo.updateFamily(name, familyId);
+    public boolean updateFamily(String name, int phone, int familyId) {
+        return familyRepo.updateFamily(name, phone, familyId);
     }
 
     @Override

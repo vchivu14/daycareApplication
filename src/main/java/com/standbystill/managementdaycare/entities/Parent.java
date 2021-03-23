@@ -16,6 +16,10 @@ public class Parent implements Serializable {
     @Column(name = "Family_id")
     private int familyId;
 
+    @Id
+    @Column(name = "Person_id")
+    private int personId;
+
     @Column(name = "FirstName")
     private String firstName;
     @Column(name = "LastName")
@@ -34,9 +38,10 @@ public class Parent implements Serializable {
     @JoinColumn(name = "Family_id", referencedColumnName = "id", insertable=false, updatable=false)
     private Family family;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CPR", insertable=false, updatable=false)
-    private CPR cpr;
+    @Id
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "Person_id", referencedColumnName = "id", insertable=false, updatable=false)
+    private Person person;
 
     public Parent() {
     }
@@ -55,6 +60,14 @@ public class Parent implements Serializable {
 
     public void setFamilyId(int familyId) {
         this.familyId = familyId;
+    }
+
+    public int getPersonId() {
+        return personId;
+    }
+
+    public void setPersonId(int personId) {
+        this.personId = personId;
     }
 
     public String getFirstName() {
@@ -97,18 +110,6 @@ public class Parent implements Serializable {
         this.phone = phone;
     }
 
-    public CPR getCpr() {
-        return cpr;
-    }
-
-    public int getCprId() {
-        return cpr.getId();
-    }
-
-    public void setCpr(CPR cpr) {
-        this.cpr = cpr;
-    }
-
     public int getIncome() {
         return income;
     }
@@ -117,18 +118,34 @@ public class Parent implements Serializable {
         this.income = income;
     }
 
+    public Family getFamily() {
+        return family;
+    }
+
+    public void setFamily(Family family) {
+        this.family = family;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+
     @Override
     public String toString() {
         return "Parent{" +
                 "id=" + id +
                 ", familyId=" + familyId +
+                ", personId=" + personId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", age=" + age +
                 ", email='" + email + '\'' +
                 ", phone=" + phone +
                 ", income=" + income +
-                ", cpr=" + cpr +
                 '}';
     }
 }

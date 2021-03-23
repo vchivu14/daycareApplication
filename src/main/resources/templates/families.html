@@ -28,14 +28,14 @@
                         <td th:text="${f.id}"></td>
                         <td th:text="${f.getName()}"></td>
                         <td th:text="${f.getRegistration()}"></td>
-                        <td><a th:href="@{/families/{id}(id=${f.getId()})}">See</a></td>
+                        <td><a th:href="@{/families/{id}(id=${f.id})}">See</a></td>
                     </tr>
                 </tbody>
             </table>
         </section>
     </div>
     <br>
-    <a href="/families/tenant/" class="btn btn-primary" aria-pressed="true" role="button">Register Family</a>
+    <a href="/families/address" class="btn btn-primary" aria-pressed="true" role="button">Register Family</a>
     <br>
     <br>
     <a href="/" class="btn btn-success" aria-pressed="true" role="button">Go Back</a>

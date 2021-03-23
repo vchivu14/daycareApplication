@@ -102,7 +102,6 @@ public class Family implements Serializable {
         this.address = address;
     }
 
-
     @Override
     public String toString() {
         return "Family{" +

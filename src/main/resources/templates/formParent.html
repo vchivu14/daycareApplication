@@ -11,7 +11,8 @@
     <h2>Parent Form Registration</h2>
     <br>
 
-    <form action="#" th:action="@{/families/{idF}/person/{idP}/cpr/{idC}/parent(idF=${familyID}, idP=${personId}, idC=${cprId})}" th:object="${parent}" method="post">
+    <form action="#" th:action="@{/families/{idF}/address/{idA}/person/{idP}/parent(idF=${familyID}, idA=${addressId},
+                                idP=${personId})}" th:object="${parent}" method="post">
         <div class="form-row">
             <div class="col-xs-3 mb-3">
                 <label>First Name</label>

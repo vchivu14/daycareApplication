@@ -11,7 +11,7 @@ public class AddressCRUDServiceImpl implements AddressCRUDService {
     AddressRepo addressRepo;
 
     @Override
-    public int addAddress(Address address, int tenantId) {
-        return addressRepo.addAddress(address, tenantId);
+    public int addAddress(Address address) {
+        return addressRepo.addAddress(address);
     }
 }
