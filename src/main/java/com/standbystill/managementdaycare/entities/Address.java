@@ -22,6 +22,10 @@ public class Address implements Serializable {
     @Column(name = "Country")
     private String country;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Tenant_id", insertable=false, updatable=false)
+    private Tenant tenant;
+
     @OneToOne(mappedBy = "address", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Family family;
 
@@ -79,20 +83,8 @@ public class Address implements Serializable {
         this.country = country;
     }
 
-    public Family getFamily() {
-        return family;
-    }
-
-    public void setFamily(Family family) {
-        this.family = family;
-    }
-
-    public Teacher getTeacher() {
-        return teacher;
-    }
-
-    public void setTeacher(Teacher teacher) {
-        this.teacher = teacher;
+    public Tenant getTenant() {
+        return tenant;
     }
 
     @Override

@@ -43,15 +43,26 @@
             </tr>
             <tr>
                 <th scope="row">
-                    <p>Fees</p>
+                    <p>Phone</p>
                 </th>
                 <th>
-                    <p th:text="${family.getFees()}"/>
+                    <p th:text="${family.getPhone()}"/>
                 </th>
             </tr>
             <tr>
                 <th scope="row">
                     <p>Address</p>
+                </th>
+                <th>
+                    <p th:text="${family.getAddress()}"/>
+                </th>
+            </tr>
+            <tr>
+                <th scope="row">
+                    <p>Registration</p>
+                </th>
+                <th>
+                    <p th:text="${family.getRegistration()}"/>
                 </th>
             </tr>
             </tbody>

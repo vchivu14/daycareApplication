@@ -28,7 +28,7 @@
                 <p>Id</p>
             </th>
             <th>
-                <p th:text="${family.getId()}"/>
+                <p th:text="${familyId}"/>
             </th>
         </tr>
         <tr>
@@ -39,24 +39,11 @@
                 <p th:text="${family.getName()}"/>
             </th>
         </tr>
-        <tr>
-            <th scope="row">
-                <p>Fees</p>
-            </th>
-            <th>
-                <p th:text="${family.getFees()}"/>
-            </th>
-        </tr>
-        <tr>
-            <th scope="row">
-                <p>Address</p>
-            </th>
-        </tr>
         </tbody>
     </table>
     <br>
     <a th:href="@{/families/{id}(id=${familyId})}"
-       class="btn btn-success" aria-pressed="true" role="button">Continue to Family</a>
+       class="btn btn-success" aria-pressed="true" role="button">Continue To Family</a>
 
 </body>
 </html>

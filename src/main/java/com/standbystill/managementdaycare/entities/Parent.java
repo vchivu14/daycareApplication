@@ -26,6 +26,8 @@ public class Parent implements Serializable {
     private String email;
     @Column(name = "Phone")
     private int phone;
+    @Column(name = "Income")
+    private int income;
 
     @Id
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -103,6 +105,14 @@ public class Parent implements Serializable {
         this.cpr = cpr;
     }
 
+    public int getIncome() {
+        return income;
+    }
+
+    public void setIncome(int income) {
+        this.income = income;
+    }
+
     @Override
     public String toString() {
         return "Parent{" +
@@ -113,6 +123,7 @@ public class Parent implements Serializable {
                 ", age=" + age +
                 ", email='" + email + '\'' +
                 ", phone=" + phone +
+                ", income=" + income +
                 ", cpr=" + cpr +
                 '}';
     }

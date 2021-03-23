@@ -1,6 +1,5 @@
 package com.standbystill.managementdaycare.repositories;
 
-import com.standbystill.managementdaycare.entities.Address;
 import com.standbystill.managementdaycare.entities.Child;
 import com.standbystill.managementdaycare.entities.Family;
 import com.standbystill.managementdaycare.entities.Parent;
@@ -36,7 +35,7 @@ public class FamilyRepoImpl implements FamilyRepo {
         String name = family.getName();
         Date date = family.getRegistration();
         int phone = family.getPhone();
-        String sql = "INSERT INTO family (Name, Registration, Phone, Address) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO family (Name, Registration, Phone, Address_id) VALUES (?,?,?,?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(new PreparedStatementCreator() {
             @Override
@@ -67,7 +66,7 @@ public class FamilyRepoImpl implements FamilyRepo {
 
     @Override
     public Family findFamilyById(int familyId) {
-        String sql = "SELECT id, Name, Fees FROM family WHERE id = ?";
+        String sql = "SELECT * FROM family WHERE id = ?";
         RowMapper<Family> rowMapper = new BeanPropertyRowMapper<>(Family.class);
         return jdbcTemplate.queryForObject(sql,rowMapper,familyId);
     }
@@ -81,14 +80,14 @@ public class FamilyRepoImpl implements FamilyRepo {
 
     @Override
     public List<Parent> findParentsForFamily(int familyId) {
-        String sql = "SELECT * FROM parents WHERE Family_id= ?";
+        String sql = "SELECT * FROM parent WHERE Family_id= ?";
         RowMapper<Parent> rowMapper = new BeanPropertyRowMapper<>(Parent.class);
         return jdbcTemplate.query(sql,rowMapper,familyId);
     }
 
     @Override
     public List<Child> findChildrenForFamily(int familyId) {
-        String sql = "SELECT * FROM children WHERE Family_id = ?";
+        String sql = "SELECT * FROM child WHERE Family_id = ?";
         RowMapper<Child> rowMapper = new BeanPropertyRowMapper<>(Child.class);
         return jdbcTemplate.query(sql, rowMapper, familyId);
     }

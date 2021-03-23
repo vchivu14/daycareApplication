@@ -22,12 +22,12 @@ public class Teacher implements Serializable {
     @Column(name = "Phone")
     private int phone;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "Address_id", nullable = false)
-    private Address address;
-
     @OneToOne(mappedBy = "teacher", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Class aClass;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Address_id", insertable=false, updatable=false)
+    private Address address;
 
     public Teacher() {
     }
@@ -88,6 +88,14 @@ public class Teacher implements Serializable {
         this.address = address;
     }
 
+    public Class getaClass() {
+        return aClass;
+    }
+
+    public void setaClass(Class aClass) {
+        this.aClass = aClass;
+    }
+
     @Override
     public String toString() {
         return "Teacher{" +
@@ -97,7 +105,6 @@ public class Teacher implements Serializable {
                 ", age=" + age +
                 ", email='" + email + '\'' +
                 ", phone=" + phone +
-                ", address=" + address +
                 '}';
     }
 }

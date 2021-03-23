@@ -2,18 +2,18 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Registration Address</title>
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
+
 <body>
     <br>
     <h2>Family Registration</h2>
     <br>
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
-            <form th:action="@{/families/address/add}" th:object="${address}" class="form-horizontal" role="form" method="post">
+            <form th:action="@{/families/tenant/{idT}/address(idT=${tenantId})}" th:object="${address}" class="form-horizontal" role="form" method="post">
                 <fieldset>
                     <legend>Address Details</legend>
 

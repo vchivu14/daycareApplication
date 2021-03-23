@@ -19,8 +19,6 @@ public class Family implements Serializable {
     private Date registration;
     @Column(name = "Phone")
     private int phone;
-    @Column(name = "Subsidy")
-    private boolean subsidy;
 
     @OneToMany(mappedBy = "familyId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Collection<Parent> parents;
@@ -32,8 +30,8 @@ public class Family implements Serializable {
     @JoinColumn(name = "Fee_id")
     private Fee fee;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "Address", nullable = false)
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Address_id", insertable=false, updatable=false)
     private Address address;
 
     public Family() {
@@ -72,14 +70,6 @@ public class Family implements Serializable {
         this.phone = phone;
     }
 
-    public boolean isSubsidy() {
-        return subsidy;
-    }
-
-    public void setSubsidy(boolean subsidy) {
-        this.subsidy = subsidy;
-    }
-
     public Collection<Parent> getParents() {
         return parents;
     }
@@ -112,6 +102,7 @@ public class Family implements Serializable {
         this.address = address;
     }
 
+
     @Override
     public String toString() {
         return "Family{" +
@@ -119,7 +110,6 @@ public class Family implements Serializable {
                 ", name='" + name + '\'' +
                 ", registration=" + registration +
                 ", phone=" + phone +
-                ", subsidy=" + subsidy +
                 ", fee=" + fee +
                 ", address=" + address +
                 '}';

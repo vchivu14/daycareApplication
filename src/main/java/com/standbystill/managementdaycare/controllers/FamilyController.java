@@ -2,8 +2,10 @@ package com.standbystill.managementdaycare.controllers;
 
 import com.standbystill.managementdaycare.entities.Address;
 import com.standbystill.managementdaycare.entities.Family;
+import com.standbystill.managementdaycare.entities.Tenant;
 import com.standbystill.managementdaycare.services.AddressCRUDService;
 import com.standbystill.managementdaycare.services.FamilyCRUDService;
+import com.standbystill.managementdaycare.services.TenantCRUDService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +21,8 @@ public class FamilyController {
     FamilyCRUDService familyCRUDService;
     @Autowired
     AddressCRUDService addressCRUDService;
+    @Autowired
+    TenantCRUDService tenantCRUDService;
 
     @GetMapping("/families/{id}")
     public String getFamily(@PathVariable("id") int id, Model model) {
@@ -39,34 +43,51 @@ public class FamilyController {
         }
     }
 
-    @GetMapping("/families/address/{id}/add")
-    public String retrieveFamilyModel(@PathVariable("id") int id, Model model) {
-        model.addAttribute("addressId", id);
-        model.addAttribute("family", new Family());
-        return "familyForm";
+    @GetMapping("/families/tenant")
+    public String retrieveTenantModel(Model model) {
+        model.addAttribute("tenant", new Tenant());
+        return "tenantForm";
     }
 
-    @PostMapping("/families/address/{id}/add")
-    public String addFamily(@PathVariable("id") int idA, @ModelAttribute Family family, Model model) {
-        int id = familyCRUDService.addFamily(family,idA);
-        model.addAttribute("family", family);
-        model.addAttribute("familyId", id);
-        return "resultFamily";
+    @PostMapping("/families/tenant")
+    public String addTenant(@ModelAttribute Tenant tenant, Model model) {
+        int tenantId = tenantCRUDService.addTenant(tenant);
+        model.addAttribute("tenantId", tenantId);
+        return "resultTenant";
     }
 
-    @GetMapping("/families/address/add")
-    public String retrieveAddressModel(Model model) {
+    @GetMapping("/families/tenant/{idT}/address")
+    public String retrieveAddressModel(@PathVariable("idT") int idT, Model model) {
+        model.addAttribute("tenantId", idT);
         model.addAttribute("address", new Address());
         return "addressForm";
     }
 
-    @PostMapping("/families/address/add")
-    public String addAddress(@ModelAttribute Address address, Model model) {
-        int id = addressCRUDService.addAddress(address);
+    @PostMapping("/families/tenant/{idT}/address")
+    public String addAddress(@PathVariable("idT") int idT, @ModelAttribute Address address, Model model) {
+        model.addAttribute("tenantId", idT);
+        int addressId = addressCRUDService.addAddress(address, idT);
         model.addAttribute("address", address);
-        model.addAttribute("addressId", id);
+        model.addAttribute("addressId", addressId);
         return "resultAddress";
+    }
 
+    @GetMapping("/families/tenant/{idT}/address/{idA}")
+    public String retrieveFamilyModel(@PathVariable("idT") int idT, @PathVariable("idA") int idA, Model model) {
+        model.addAttribute("tenantId", idT);
+        model.addAttribute("addressId", idA);
+        model.addAttribute("family", new Family());
+        return "familyForm";
+    }
+
+    @PostMapping("/families/tenant/{idT}/address/{idA}")
+    public String addFamily(@PathVariable("idT") int idT, @PathVariable("idA") int idA, @ModelAttribute Family family, Model model) {
+        model.addAttribute("tenantId", idT);
+        model.addAttribute("addressId", idA);
+        int familyId = familyCRUDService.addFamily(family,idA);
+        model.addAttribute("family", family);
+        model.addAttribute("familyId", familyId);
+        return "redirect:/families/"+familyId;
     }
 
 

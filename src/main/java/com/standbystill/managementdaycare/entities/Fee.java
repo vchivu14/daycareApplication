@@ -18,6 +18,8 @@ public class Fee implements Serializable {
     private int months;
     @Column(name = "Category")
     private String category;
+    @Column(name = "Subsidy")
+    private boolean subsidy;
 
     @OneToMany(mappedBy = "fee", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Collection<Family> families;
