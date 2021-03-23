@@ -31,7 +31,7 @@ public class FamilyController {
     public String deleteFamily(@PathVariable("id") int id) {
         boolean delete = familyCRUDService.deleteFamily(id);
         if (delete) {
-            return "redirect:/";
+            return "redirect:/families";
         } else {
             return "error";
         }

@@ -26,14 +26,16 @@ public class ParentsController {
     @GetMapping("/families/{idF}/parent/{idP}")
     public String showParentForFamily(@PathVariable("idF") int idF, @PathVariable("idP") int idP, Model model) {
         model.addAttribute("familyId", idF);
-        model.addAttribute("parentId", idP);
+        model.addAttribute("personId", idP);
         model.addAttribute("parent", parentsCRUDService.findParentById(idP));
+        model.addAttribute("person", personCRUDService.findPersonById(idP));
+        model.addAttribute("address", addressCRUDService.findAddressById(idP));
         return "parent";
     }
 
     @GetMapping("/families/{idF}/parent/{idP}/delete")
     public String deleteParent(@PathVariable("idF") int idF, @PathVariable("idP") int idP) {
-        Boolean delete = parentsCRUDService.deleteParent(idP);
+        boolean delete = parentsCRUDService.deleteParent(idP);
         if (delete) {
             return "redirect:/families/"+idF;
         } else {
@@ -93,8 +95,7 @@ public class ParentsController {
         model.addAttribute("addressId", idA);
         model.addAttribute("personId", idP);
         model.addAttribute("parent", parent);
-        int parentId = parentsCRUDService.addParent(parent,idF,idP);
-        model.addAttribute("parentId", parentId);
+        parentsCRUDService.addParent(parent,idF,idP);
         return "resultParent";
     }
 
