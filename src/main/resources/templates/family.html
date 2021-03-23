@@ -51,14 +51,6 @@
             </tr>
             <tr>
                 <th scope="row">
-                    <p>Address</p>
-                </th>
-                <th>
-                    <p th:text="${family.getAddress()}"/>
-                </th>
-            </tr>
-            <tr>
-                <th scope="row">
                     <p>Registration</p>
                 </th>
                 <th>
@@ -88,13 +80,13 @@
                     <td th:text="${p.getId()}"></td>
                     <td th:text="${p.getLastName()}"></td>
                     <td th:text="${p.getFirstName()}"></td>
-                    <td><a th:href="@{/families/{idF}/parents/{idP}(idF=${familyId}, idP=${p.id})}"
+                    <td><a th:href="@{/families/{idF}/parent/{idP}(idF=${familyId}, idP=${p.id})}"
                            class="btn btn-warning" role="button">See</a></td>
                 </tr>
                 </tbody>
             </table>
             <br>
-            <a th:href="@{/families/{id}/parents/add(id=${familyId})}"
+            <a th:href="@{/families/{idF}/person(idF=${familyId})}"
                class="btn btn-primary" aria-pressed="true" role="button">Add a Parent</a>
         </section>
     </div>

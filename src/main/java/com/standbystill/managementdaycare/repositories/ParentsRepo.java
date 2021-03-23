@@ -12,7 +12,7 @@ public interface ParentsRepo {
 
     Family fetchFamilyForParent(int familyId);
 
-    int addParent(Parent parent, int familyId);
+    int addParent(Parent parent, int familyId, int cprId);
 
     boolean updateParent(String lastName, String firstName, int cpr, int id);
 

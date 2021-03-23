@@ -26,8 +26,8 @@ public class Family implements Serializable {
     @OneToMany(mappedBy = "familyId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Collection<Child> children;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "Fee_id")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Fee_id", insertable=false, updatable=false)
     private Fee fee;
 
     @OneToOne(fetch = FetchType.LAZY)

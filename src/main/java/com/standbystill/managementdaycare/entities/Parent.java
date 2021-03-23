@@ -34,8 +34,8 @@ public class Parent implements Serializable {
     @JoinColumn(name = "Family_id", referencedColumnName = "id", insertable=false, updatable=false)
     private Family family;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "CPR", nullable = false)
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "CPR", insertable=false, updatable=false)
     private CPR cpr;
 
     public Parent() {
@@ -99,6 +99,10 @@ public class Parent implements Serializable {
 
     public CPR getCpr() {
         return cpr;
+    }
+
+    public int getCprId() {
+        return cpr.getId();
     }
 
     public void setCpr(CPR cpr) {

@@ -45,11 +45,15 @@ public class ParentsRepoImpl implements ParentsRepo {
     }
 
     @Override
-    public int addParent(Parent parent, int familyId) {
+    public int addParent(Parent parent, int familyId, int cprId) {
         String lastName = parent.getLastName();
         String firstName = parent.getFirstName();
-        CPR cpr = parent.getCpr();
-        String sql = "INSERT INTO parent (FirstName, LastName, CPR, Family_id) VALUES (?, ?, ?, ?)";
+        int age = parent.getAge();
+        String email = parent.getEmail();
+        int phone = parent.getPhone();
+        int income = parent.getIncome();
+        String sql = "INSERT INTO parent (FirstName, LastName, Age, Email, Phone, CPR, Family_id, Income) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(new PreparedStatementCreator() {
             @Override
@@ -57,8 +61,12 @@ public class ParentsRepoImpl implements ParentsRepo {
                 PreparedStatement ps = connection.prepareStatement(sql, new String[] {"id"});
                 ps.setString(1,firstName);
                 ps.setString(2,lastName);
-                ps.setString(3, String.valueOf(cpr));
-                ps.setString(4, String.valueOf(familyId));
+                ps.setString(3, String.valueOf(age));
+                ps.setString(4, email);
+                ps.setString(5, String.valueOf(phone));
+                ps.setString(6, String.valueOf(cprId));
+                ps.setString(7, String.valueOf(familyId));
+                ps.setString(8, String.valueOf(income));
                 return ps;
             }
         }, keyHolder);

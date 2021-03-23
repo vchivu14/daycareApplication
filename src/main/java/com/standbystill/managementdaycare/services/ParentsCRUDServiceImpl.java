@@ -29,8 +29,8 @@ public class ParentsCRUDServiceImpl implements ParentsCRUDService {
     }
 
     @Override
-    public int addParent(Parent parent, int familyId) {
-        return parentsRepo.addParent(parent, familyId);
+    public int addParent(Parent parent, int familyId, int cprId) {
+        return parentsRepo.addParent(parent, familyId, cprId);
     }
 
     @Override

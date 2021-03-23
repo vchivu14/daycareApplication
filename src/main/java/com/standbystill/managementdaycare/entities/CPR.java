@@ -14,6 +14,10 @@ public class CPR implements Serializable {
     @Column(name = "Number")
     private int number;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Person_id", insertable=false, updatable=false)
+    private Person person;
+
     @OneToOne(mappedBy = "cpr", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Parent parent;
 
@@ -53,6 +57,14 @@ public class CPR implements Serializable {
 
     public void setChild(Child child) {
         this.child = child;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     @Override

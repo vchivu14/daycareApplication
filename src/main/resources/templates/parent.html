@@ -47,14 +47,6 @@
                 <p th:text="${parent.getFirstName()}"/>
             </th>
         </tr>
-        <tr>
-            <th scope="row">
-                <p>CPR</p>
-            </th>
-            <th>
-                <p th:text="${parent.getCpr()}"/>
-            </th>
-        </tr>
         </tbody>
     </table>
     <a th:href="@{/families/{id}(id=${familyId})}" class="btn btn-success" aria-pressed="true" role="button">Go Back</a>

@@ -28,7 +28,7 @@
                         <td th:text="${f.id}"></td>
                         <td th:text="${f.getName()}"></td>
                         <td th:text="${f.getRegistration()}"></td>
-                        <td><a th:href="@{/families/{id}(id=${f.id})}">See</a></td>
+                        <td><a th:href="@{/families/{id}(id=${f.getId()})}">See</a></td>
                     </tr>
                 </tbody>
             </table>

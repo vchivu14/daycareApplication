@@ -21,8 +21,8 @@ public class Fee implements Serializable {
     @Column(name = "Subsidy")
     private boolean subsidy;
 
-    @OneToMany(mappedBy = "fee", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Collection<Family> families;
+    @OneToOne(mappedBy = "fee", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Family family;
 
     public Fee() {
     }
