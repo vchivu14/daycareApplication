@@ -33,6 +33,14 @@
         </tr>
         <tr>
             <th scope="row">
+                <p>CPR</p>
+            </th>
+            <th>
+                <p th:text="${person.getCpr()}"/>
+            </th>
+        </tr>
+        <tr>
+            <th scope="row">
                 <p>Last Name</p>
             </th>
             <th>
@@ -49,10 +57,35 @@
         </tr>
         <tr>
             <th scope="row">
-                <p>CPR</p>
+                <p>Age</p>
             </th>
             <th>
-                <p th:text="${person.getCpr()}"/>
+                <p th:text="${parent.getAge()}"/>
+            </th>
+        </tr>
+        <tr>
+            <th scope="row">
+                <p>Phone</p>
+            </th>
+            <th>
+                <p th:text="${parent.getPhone()}"/>
+            </th>
+        </tr>
+        <tr>
+            <th scope="row">
+                <p>Email</p>
+            </th>
+            <th>
+                <p th:text="${parent.getEmail()}"/>
+            </th>
+        </tr>
+        <tr>
+        <tr>
+            <th scope="row">
+                <p>Income</p>
+            </th>
+            <th>
+                <p th:text="${parent.getIncome()}"/>
             </th>
         </tr>
         </tbody>

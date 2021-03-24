@@ -40,7 +40,7 @@ public class FamilyController {
     @GetMapping("/families/address")
     public String retrieveAddressModel(Model model) {
         model.addAttribute("address", new Address());
-        return "formAddress";
+        return "formAddressFamily";
     }
 
     @PostMapping("/families/address")
@@ -48,7 +48,7 @@ public class FamilyController {
         int addressId = addressCRUDService.addAddress(address);
         model.addAttribute("address", address);
         model.addAttribute("addressId", addressId);
-        return "resultAddress";
+        return "resultAddressFamily";
     }
 
     @GetMapping("/families/address/{idA}")

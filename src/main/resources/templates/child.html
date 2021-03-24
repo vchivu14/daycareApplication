@@ -33,6 +33,14 @@
         </tr>
         <tr>
             <th scope="row">
+                <p>CPR</p>
+            </th>
+            <th>
+                <p th:text="${person.getCpr()}"/>
+            </th>
+        </tr>
+        <tr>
+            <th scope="row">
                 <p>Last Name</p>
             </th>
             <th>
@@ -53,14 +61,6 @@
             </th>
             <th>
                 <p th:text="${child.getAge()}"/>
-            </th>
-        </tr>
-        <tr>
-            <th scope="row">
-                <p>CPR</p>
-            </th>
-            <th>
-                <p th:text="${person.getCpr()}"/>
             </th>
         </tr>
         </tbody>

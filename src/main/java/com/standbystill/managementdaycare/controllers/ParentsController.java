@@ -47,7 +47,7 @@ public class ParentsController {
     public String retrieveAddressModel(@PathVariable("idF") int idF, Model model) {
         model.addAttribute("familyID", idF);
         model.addAttribute("address", new Address());
-        return "formAddressP";
+        return "formAddressParent";
     }
 
     @PostMapping("/families/{idF}/address/parent")
@@ -56,7 +56,7 @@ public class ParentsController {
         int addressId = addressCRUDService.addAddress(address);
         model.addAttribute("address", address);
         model.addAttribute("addressId", addressId);
-        return "resultAddressP";
+        return "resultAddressParent";
     }
 
     @GetMapping("/families/{idF}/address/{idA}/person/parent")
@@ -64,7 +64,7 @@ public class ParentsController {
         model.addAttribute("familyID", idF);
         model.addAttribute("addressId", idA);
         model.addAttribute("person", new Person());
-        return "formPerson";
+        return "formPersonParent";
     }
 
     @PostMapping("/families/{idF}/address/{idA}/person/parent")
@@ -75,7 +75,7 @@ public class ParentsController {
         int personId = personCRUDService.addPerson(person, idA);
         model.addAttribute("person", person);
         model.addAttribute("personId", personId);
-        return "resultPerson";
+        return "resultPersonParent";
     }
 
     @GetMapping("/families/{idF}/address/{idA}/person/{idP}/parent")

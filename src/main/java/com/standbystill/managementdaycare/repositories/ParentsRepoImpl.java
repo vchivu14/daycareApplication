@@ -44,7 +44,7 @@ public class ParentsRepoImpl implements ParentsRepo {
     }
 
     @Override
-    public int addParent(Parent parent, int familyId, int personId) {
+    public void addParent(Parent parent, int familyId, int personId) {
         String lastName = parent.getLastName();
         String firstName = parent.getFirstName();
         int age = parent.getAge();
@@ -65,8 +65,7 @@ public class ParentsRepoImpl implements ParentsRepo {
             ps.setString(7, String.valueOf(familyId));
             ps.setString(8, String.valueOf(personId));
             return ps;
-        }, keyHolder);
-        return keyHolder.getKey().intValue();
+        });
     }
 
     @Override

@@ -15,20 +15,20 @@
     <form action="#" th:action="@{/families/address/{idA}(idA=${addressId})}" th:object="${family}" method="post">
         <div class="form-row">
             <div class="col-xs-3 mb-3">
-                <label for="name">
-                    <input type="text" class="form-control" id="name" placeholder="Name" required
+                <label for="name">Name
+                    <input type="text" class="form-control"  id="name" placeholder="Name" required
                            th:field="*{name}">
                 </label>
             </div>
             <div class="col-xs-3 mb-3">
-                <label for="date">
+                <label for="date">Date
                     <input type="date" class="form-control" id="date" placeholder="Date" required
                            th:field="*{registration}">
                 </label>
             </div>
             <div class="col-xs-3 mb-3">
-                <label for="phone">
-                    <input type="text" class="form-control" id="phone" placeholder="Phone" required
+                <label for="phone">Phone
+                    <input type="number" class="form-control" id="phone" placeholder="Phone" required
                            th:field="*{phone}">
                 </label>
             </div>

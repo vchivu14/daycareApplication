@@ -2,7 +2,6 @@ package com.standbystill.managementdaycare.controllers;
 
 import com.standbystill.managementdaycare.entities.Address;
 import com.standbystill.managementdaycare.entities.Child;
-import com.standbystill.managementdaycare.entities.Parent;
 import com.standbystill.managementdaycare.entities.Person;
 import com.standbystill.managementdaycare.services.AddressCRUDService;
 import com.standbystill.managementdaycare.services.ChildrenCRUDService;
@@ -48,7 +47,7 @@ public class ChildrenController {
     public String retrieveAddressModel(@PathVariable("idF") int idF, Model model) {
         model.addAttribute("familyID", idF);
         model.addAttribute("address", new Address());
-        return "formAddressC";
+        return "formAddressChild";
     }
 
     @PostMapping("/families/{idF}/address/child")
@@ -57,7 +56,7 @@ public class ChildrenController {
         int addressId = addressCRUDService.addAddress(address);
         model.addAttribute("address", address);
         model.addAttribute("addressId", addressId);
-        return "resultAddressC";
+        return "resultAddressChild";
     }
 
     @GetMapping("/families/{idF}/address/{idA}/person/child")
@@ -65,7 +64,7 @@ public class ChildrenController {
         model.addAttribute("familyID", idF);
         model.addAttribute("addressId", idA);
         model.addAttribute("person", new Person());
-        return "formPersonC";
+        return "formPersonChild";
     }
 
     @PostMapping("/families/{idF}/address/{idA}/person/child")
@@ -76,7 +75,7 @@ public class ChildrenController {
         int personId = personCRUDService.addPerson(person, idA);
         model.addAttribute("person", person);
         model.addAttribute("personId", personId);
-        return "resultPersonC";
+        return "resultPersonChild";
     }
 
     @GetMapping("/families/{idF}/address/{idA}/person/{idP}/child")

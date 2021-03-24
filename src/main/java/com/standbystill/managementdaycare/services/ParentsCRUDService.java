@@ -12,7 +12,7 @@ public interface ParentsCRUDService {
 
     Family fetchFamilyForParent(int familyId);
 
-    int addParent(Parent parent, int familyId, int personId);
+    void addParent(Parent parent, int familyId, int personId);
 
     boolean updateParent(String firstName, String lastName, int age, String email, int phone, int income, int personId);
 

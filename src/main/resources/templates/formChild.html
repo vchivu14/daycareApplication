@@ -17,17 +17,17 @@
         <div class="form-row">
             <div class="col-xs-3 mb-3">
                 <label>First Name</label>
-                <input type="text" class="form-control" id="fname" placeholder="First Name" required
+                <input type="text" class="form-control" maxlength="25" id="fname" placeholder="First Name" required
                        th:field="*{firstName}">
             </div>
             <div class="col-xs-3 mb-3">
                 <label>Last Name</label>
-                <input type="text" class="form-control" id="lname" placeholder="Last Name" required
+                <input type="text" class="form-control" maxlength="25" id="lname" placeholder="Last Name" required
                        th:field="*{lastName}">
             </div>
             <div class="col-xs-3 mb-3">
                 <label>Age</label>
-                <input type="number" class="form-control" id="age" placeholder="Age" required
+                <input type="number" pattern="[0-9]" class="form-control" maxlength="3" id="age" placeholder="Age" required
                        th:field="*{age}">
             </div>
         </div>
