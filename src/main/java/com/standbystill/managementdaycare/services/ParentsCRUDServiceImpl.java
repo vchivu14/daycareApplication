@@ -33,8 +33,8 @@ public class ParentsCRUDServiceImpl implements ParentsCRUDService {
         parentsRepo.addParent(parent, familyId, personId);
     }
     @Override
-    public boolean updateParent(String firstName, String lastName, int age, String email, int phone, int income, int personId) {
-        return parentsRepo.updateParent(firstName,lastName,age,email,phone,income,personId);
+    public boolean updateParent(Parent parent, int personId) {
+        return parentsRepo.updateParent(parent, personId);
     }
 
     @Override

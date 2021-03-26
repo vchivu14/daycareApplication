@@ -25,18 +25,22 @@
         <tbody>
         <tr>
             <th scope="row">
-                <p>Id</p>
-            </th>
-            <th>
-                <p th:text="${parent.getPersonId()}"/>
-            </th>
-        </tr>
-        <tr>
-            <th scope="row">
                 <p>CPR</p>
             </th>
             <th>
                 <p th:text="${person.getCpr()}"/>
+            </th>
+            <td><a th:href="@{/families/{idF}/person/{idP}/updateInfo(idF=${familyId},idP=${personId})}"
+                   class="btn btn-danger" aria-pressed="true" role="button">Update CPR</a></td>
+        </tr>
+        <tr>
+            <th scope="row">
+                <p>Id</p>
+            </th>
+            <th>
+                <p th:text="${parent.getPersonId()}"/>
+                <td><a th:href="@{/families/{idF}/parent/{idP}/updateInfo(idF=${familyId},idP=${personId})}"
+                    class="btn btn-danger" aria-pressed="true" role="button">Update Info</a></td>
             </th>
         </tr>
         <tr>
@@ -90,6 +94,74 @@
         </tr>
         </tbody>
     </table>
+
+    <table class="table table-hover table-responsive table-sm">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">
+                #
+            </th>
+            <th scope="col">
+                Information
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">
+                <p>Id</p>
+            </th>
+            <th>
+                <p th:text="${address.getId()}"/>
+            <td><a th:href="@{/families/{idF}/parent/{idP}/address/{idA}/update(idF=${familyId},idP=${personId},
+                            idA=${address.id})}"
+                   class="btn btn-danger" aria-pressed="true" role="button">Update Address</a></td>
+            </th>
+        </tr>
+        <tr>
+            <th scope="row">
+                <p>Street</p>
+            </th>
+            <th>
+                <p th:text="${address.getStreet()}"/>
+            </th>
+        </tr>
+        <tr>
+            <th scope="row">
+                <p>No</p>
+            </th>
+            <th>
+                <p th:text="${address.getNumber()}"/>
+            </th>
+        </tr>
+        <tr>
+            <th scope="row">
+                <p>City</p>
+            </th>
+            <th>
+                <p th:text="${address.getCity()}"/>
+            </th>
+        </tr>
+        <tr>
+            <th scope="row">
+                <p>Zipcode</p>
+            </th>
+            <th>
+                <p th:text="${address.getZipcode()}"/>
+            </th>
+        </tr>
+        <tr>
+            <th scope="row">
+                <p>Country</p>
+            </th>
+            <th>
+                <p th:text="${address.getCountry()}"/>
+            </th>
+        </tr>
+        </tbody>
+    </table>
+
+    <br>
     <a th:href="@{/families/{id}(id=${familyId})}" class="btn btn-success" aria-pressed="true" role="button">Go Back</a>
     <br>
 

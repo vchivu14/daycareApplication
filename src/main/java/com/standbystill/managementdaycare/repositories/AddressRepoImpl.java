@@ -1,19 +1,15 @@
 package com.standbystill.managementdaycare.repositories;
 
 import com.standbystill.managementdaycare.entities.Address;
-import com.standbystill.managementdaycare.entities.Child;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 
 @Repository
 public class AddressRepoImpl implements AddressRepo {
@@ -46,5 +42,16 @@ public class AddressRepoImpl implements AddressRepo {
         String sql = "SELECT * FROM address WHERE id = ?";
         RowMapper<Address> rowMapper = new BeanPropertyRowMapper<>(Address.class);
         return jdbcTemplate.queryForObject(sql,rowMapper,id);
+    }
+
+    @Override
+    public boolean updateAddress(Address address, int id) {
+        String street = address.getStreet();
+        int number = address.getNumber();
+        String city = address.getCity();
+        int zipcode = address.getZipcode();
+        String country = address.getCountry();
+        String sql = "UPDATE address SET Street = ?, Number = ?, City = ?, Zipcode = ?, Country = ? WHERE id = ?";
+        return jdbcTemplate.update(sql,street,number,city,zipcode,country,id)>=0;
     }
 }

@@ -19,4 +19,9 @@ public class PersonCRUDServiceImpl implements PersonCRUDService {
     public Person findPersonById(int personId) {
         return personRepo.findPersonById(personId);
     }
+
+    @Override
+    public boolean updatePerson(Person person, int personId) {
+        return personRepo.updatePerson(person,personId);
+    }
 }

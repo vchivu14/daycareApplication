@@ -23,7 +23,7 @@ public class ParentsController {
     @Autowired
     AddressCRUDService addressCRUDService;
 
-    @GetMapping("/families/{idF}/parent/{idP}")
+    @GetMapping("/families/{idF}/parent/{idP}/view")
     public String showParentForFamily(@PathVariable("idF") int idF, @PathVariable("idP") int idP, Model model) {
         model.addAttribute("familyId", idF);
         model.addAttribute("personId", idP);
@@ -31,6 +31,75 @@ public class ParentsController {
         model.addAttribute("person", personCRUDService.findPersonById(idP));
         model.addAttribute("address", addressCRUDService.findAddressById(idP));
         return "parent";
+    }
+
+    @GetMapping("/families/{idF}/person/{idP}/updateInfo")
+    public String getPersonToUpdate(@PathVariable("idF") int idF, @PathVariable("idP") int idP, Model model) {
+        model.addAttribute("familyId", idF);
+        model.addAttribute("personId", idP);
+        model.addAttribute("person", personCRUDService.findPersonById(idP));
+        return "personInfo";
+    }
+
+    @PostMapping("/families/{idF}/person/{idP}/updateInfo")
+    public String updatePersonParent(@PathVariable("idF") int idF, @PathVariable("idP") int idP,
+                                        @ModelAttribute Person person, Model model) {
+        model.addAttribute("familyId", idF);
+        model.addAttribute("personId", idP);
+        model.addAttribute("person", personCRUDService.findPersonById(idP));
+        boolean update = personCRUDService.updatePerson(person,idP);
+        if (update) {
+            return new StringBuilder().append("redirect:/families/").append(idF).append("/parent/").append(idP).append("/view").toString();
+        } else {
+            return "/error";
+        }
+    }
+
+    @GetMapping("/families/{idF}/parent/{idP}/updateInfo")
+    public String getParentToUpdate(@PathVariable("idF") int idF, @PathVariable("idP") int idP, Model model) {
+        model.addAttribute("familyId", idF);
+        model.addAttribute("personId", idP);
+        model.addAttribute("parent", parentsCRUDService.findParentById(idP));
+        return "parentInfo";
+    }
+
+    @PostMapping("/families/{idF}/parent/{idP}/updateInfo")
+    public String updateParent(@PathVariable("idF") int idF, @PathVariable("idP") int idP,
+                               @ModelAttribute Parent parent, Model model) {
+        model.addAttribute("familyId", idF);
+        model.addAttribute("personId", idP);
+        model.addAttribute("parent", parentsCRUDService.findParentById(idP));
+        boolean update = parentsCRUDService.updateParent(parent,idP);
+        if (update) {
+            return new StringBuilder().append("redirect:/families/").append(idF).append("/parent/").append(idP).append("/view").toString();
+        } else {
+            return "/error";
+        }
+    }
+
+    @GetMapping("/families/{idF}/parent/{idP}/address/{idA}/update")
+    public String getAddressToUpdate(@PathVariable("idF") int idF, @PathVariable("idA") int idA,
+                                     @PathVariable("idP") int idP, Model model) {
+        model.addAttribute("familyID", idF);
+        model.addAttribute("addressId", idA);
+        model.addAttribute("personId", idP);
+        model.addAttribute("address", addressCRUDService.findAddressById(idA));
+        return "parentAddressInfo";
+    }
+
+    @PostMapping("/families/{idF}/parent/{idP}/address/{idA}/update")
+    public String updateParentAddress(@PathVariable("idF") int idF, @PathVariable("idA") int idA,
+                                     @PathVariable("idP") int idP, @ModelAttribute Address address, Model model) {
+        model.addAttribute("familyID", idF);
+        model.addAttribute("addressId", idA);
+        model.addAttribute("personId", idP);
+        model.addAttribute("address", addressCRUDService.findAddressById(idA));
+        boolean update = addressCRUDService.updateAddress(address,idA);
+        if (update) {
+            return new StringBuilder().append("redirect:/families/").append(idF).append("/parent/").append(idP).append("/view").toString();
+        } else {
+            return "/error";
+        }
     }
 
     @GetMapping("/families/{idF}/parent/{idP}/delete")

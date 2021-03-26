@@ -1,19 +1,16 @@
 package com.standbystill.managementdaycare.repositories;
 
-import com.standbystill.managementdaycare.entities.Child;
+import com.standbystill.managementdaycare.entities.Parent;
 import com.standbystill.managementdaycare.entities.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 
 @Repository
 public class PersonRepoImpl implements PersonRepo {
@@ -39,5 +36,13 @@ public class PersonRepoImpl implements PersonRepo {
         String sql = "SELECT * FROM person WHERE id = ?";
         RowMapper<Person>rowMapper = new BeanPropertyRowMapper<>(Person.class);
         return jdbcTemplate.queryForObject(sql,rowMapper,personId);
+    }
+
+    @Override
+    public boolean updatePerson(Person person, int personId) {
+        int cpr = person.getCpr();
+        String sql = "UPDATE person SET CPR = ? WHERE id = ?";
+        return jdbcTemplate.update(sql,cpr,personId)>=0;
+
     }
 }

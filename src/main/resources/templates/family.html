@@ -126,8 +126,8 @@
                     <td th:text="${p.getPersonId()}"></td>
                     <td th:text="${p.getLastName()}"></td>
                     <td th:text="${p.getFirstName()}"></td>
-                    <td><a th:href="@{/families/{idF}/parent/{idP}(idF=${familyId}, idP=${p.personId})}"
-                           class="btn btn-warning" role="button">See</a></td>
+                    <td><a th:href="@{/families/{idF}/parent/{idP}/view(idF=${familyId}, idP=${p.personId})}"
+                           class="btn btn-warning" role="button">View</a></td>
                 </tr>
                 </tbody>
             </table>

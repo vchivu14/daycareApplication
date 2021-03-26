@@ -6,4 +6,6 @@ public interface AddressCRUDService {
     int addAddress(Address address);
 
     Address findAddressById(int id);
+
+    boolean updateAddress(Address address, int id);
 }

@@ -14,7 +14,7 @@ public interface ParentsRepo {
 
     void addParent(Parent parent, int familyId, int personId);
 
-    boolean updateParent(String firstName, String lastName, int age, String email, int phone, int income, int personId);
+    boolean updateParent(Parent parent, int personId);
 
     boolean deleteParent(int personId);
 

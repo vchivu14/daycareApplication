@@ -5,15 +5,12 @@ import com.standbystill.managementdaycare.entities.Parent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.List;
 
 @Repository
@@ -69,7 +66,13 @@ public class ParentsRepoImpl implements ParentsRepo {
     }
 
     @Override
-    public boolean updateParent(String firstName, String lastName, int age, String email, int phone, int income, int personId) {
+    public boolean updateParent(Parent parent, int personId) {
+        String lastName = parent.getLastName();
+        String firstName = parent.getFirstName();
+        int age = parent.getAge();
+        String email = parent.getEmail();
+        int phone = parent.getPhone();
+        int income = parent.getIncome();
         String sql = "UPDATE parent SET FirstName = ?, LastName = ?, Age = ?, Email = ?, Phone = ?, Income = ? WHERE Person_id = ?";
         return jdbcTemplate.update(sql,firstName,lastName,age,email,phone,income,personId)>=0;
     }
