@@ -57,8 +57,11 @@ public class ChildrenRepoImpl implements ChildrenRepo {
     }
 
     @Override
-    public boolean updateChild(String firstName, String lastName, int age, int personId) {
-        String sql = "UPDATE child SET LastName = ?, FirstName = ?, Age = ? WHERE Person_id = ?";
+    public boolean updateChild(Child child, int personId) {
+        String lastName = child.getLastName();
+        String firstName = child.getFirstName();
+        int age = child.getAge();
+        String sql = "UPDATE child SET FirstName = ?, LastName = ?, Age = ? WHERE Person_id = ?";
         return jdbcTemplate.update(sql,firstName,lastName,age,personId)>=0;
     }
 

@@ -30,7 +30,7 @@
             <th>
                 <p th:text="${person.getCpr()}"/>
             </th>
-            <td><a th:href="@{/families/{idF}/person/{idP}/updateInfo(idF=${familyId},idP=${personId})}"
+            <td><a th:href="@{/families/{idF}/parent/{idP}/updateCPR(idF=${familyId},idP=${personId})}"
                    class="btn btn-danger" aria-pressed="true" role="button">Update CPR</a></td>
         </tr>
         <tr>
@@ -113,7 +113,7 @@
             </th>
             <th>
                 <p th:text="${address.getId()}"/>
-            <td><a th:href="@{/families/{idF}/parent/{idP}/address/{idA}/update(idF=${familyId},idP=${personId},
+            <td><a th:href="@{/families/{idF}/parent/{idP}/address/{idA}/updateAdress(idF=${familyId},idP=${personId},
                             idA=${address.id})}"
                    class="btn btn-danger" aria-pressed="true" role="button">Update Address</a></td>
             </th>

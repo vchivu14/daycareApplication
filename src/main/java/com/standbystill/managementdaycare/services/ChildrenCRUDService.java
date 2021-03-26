@@ -14,7 +14,7 @@ public interface ChildrenCRUDService {
 
     void addChild(Child child, int familyId, int personId);
 
-    boolean updateChild(String firstName, String lastName, int age, int childId);
+    boolean updateChild(Child child, int personId);
 
     boolean deleteChild(int personId);
 

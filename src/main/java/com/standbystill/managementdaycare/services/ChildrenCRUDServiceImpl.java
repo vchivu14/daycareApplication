@@ -34,8 +34,8 @@ public class ChildrenCRUDServiceImpl implements ChildrenCRUDService {
     }
 
     @Override
-    public boolean updateChild(String firstName, String lastName, int age, int childId) {
-        return childrenRepo.updateChild(firstName,lastName,age,childId);
+    public boolean updateChild(Child child, int personId) {
+        return childrenRepo.updateChild(child,personId);
     }
 
     @Override

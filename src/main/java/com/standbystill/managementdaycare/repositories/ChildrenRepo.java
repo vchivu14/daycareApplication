@@ -2,6 +2,7 @@ package com.standbystill.managementdaycare.repositories;
 
 import com.standbystill.managementdaycare.entities.Child;
 import com.standbystill.managementdaycare.entities.Family;
+import com.standbystill.managementdaycare.entities.Parent;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ public interface ChildrenRepo {
 
     void addChild(Child child, int familyId, int personId);
 
-    boolean updateChild(String firstName, String lastName, int age, int personId);
+    boolean updateChild(Child child, int personId);
 
     boolean deleteChild(int personId);
 

@@ -31,6 +31,8 @@
                 </th>
                 <th>
                     <p th:text="${family.getId()}"/>
+                <td><a th:href="@{/families/{idF}/updateInfo(idF=${familyId})}"
+                       class="btn btn-danger" aria-pressed="true" role="button">Update Info</a></td>
                 </th>
             </tr>
             <tr>
@@ -71,6 +73,16 @@
             </tr>
             </thead>
             <tbody>
+            <tr>
+                <th scope="row">
+                    <p>Id</p>
+                </th>
+                <th>
+                    <p th:text="${address.getId()}"/>
+                <td><a th:href="@{/families/{idF}/address/{idA}/updateAddress(idF=${familyId}, idA=${address.id})}"
+                       class="btn btn-danger" aria-pressed="true" role="button">Update Address</a></td>
+                </th>
+            </tr>
             <tr>
                 <th scope="row">
                     <p>Street Name</p>
@@ -154,8 +166,8 @@
                     <td th:text="${c.getPersonId()}"></td>
                     <td th:text="${c.getLastName()}"></td>
                     <td th:text="${c.getFirstName()}"></td>
-                    <td><a th:href="@{/families/{idF}/child/{idC}(idF=${familyId}, idC=${c.personId})}"
-                           class="btn btn-warning" role="button">See</a></td>
+                    <td><a th:href="@{/families/{idF}/child/{idC}/view(idF=${familyId}, idC=${c.personId})}"
+                           class="btn btn-warning" role="button">View</a></td>
                 </tr>
             </tbody>
         </table>

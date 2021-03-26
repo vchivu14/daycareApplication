@@ -2,17 +2,17 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Parent</title>
+    <title>Family</title>
     <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" rel="stylesheet">
 </head>
 <body>
 
     <br>
-    <h2>Parent Update</h2>
+    <h2>Family Update</h2>
     <br>
-    <form action="#" th:action="@{/families/{idF}/parent/{idP}/address/{idA}/update(idF=${familyID},
-                                idP=${personId}, idA=${addressId})}" th:object="${address}" method="post">
+    <form action="#" th:action="@{/families/{idF}/address/{idA}/updateAddress(idF=${familyID},
+                                    idA=${addressId})}" th:object="${address}" method="post">
         <input type="hidden" th:value="${addressId}" name="id" readonly>
         <div class="form-group">
             <label class="col-sm-2 control-label">Street</label>

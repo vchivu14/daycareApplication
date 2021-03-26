@@ -33,15 +33,15 @@ public class ParentsController {
         return "parent";
     }
 
-    @GetMapping("/families/{idF}/person/{idP}/updateInfo")
+    @GetMapping("/families/{idF}/parent/{idP}/updateCPR")
     public String getPersonToUpdate(@PathVariable("idF") int idF, @PathVariable("idP") int idP, Model model) {
         model.addAttribute("familyId", idF);
         model.addAttribute("personId", idP);
         model.addAttribute("person", personCRUDService.findPersonById(idP));
-        return "personInfo";
+        return "updateParentCPR";
     }
 
-    @PostMapping("/families/{idF}/person/{idP}/updateInfo")
+    @PostMapping("/families/{idF}/parent/{idP}/updateCPR")
     public String updatePersonParent(@PathVariable("idF") int idF, @PathVariable("idP") int idP,
                                         @ModelAttribute Person person, Model model) {
         model.addAttribute("familyId", idF);
@@ -60,7 +60,7 @@ public class ParentsController {
         model.addAttribute("familyId", idF);
         model.addAttribute("personId", idP);
         model.addAttribute("parent", parentsCRUDService.findParentById(idP));
-        return "parentInfo";
+        return "updateParentInfo";
     }
 
     @PostMapping("/families/{idF}/parent/{idP}/updateInfo")
@@ -77,17 +77,17 @@ public class ParentsController {
         }
     }
 
-    @GetMapping("/families/{idF}/parent/{idP}/address/{idA}/update")
+    @GetMapping("/families/{idF}/parent/{idP}/address/{idA}/updateAddress")
     public String getAddressToUpdate(@PathVariable("idF") int idF, @PathVariable("idA") int idA,
                                      @PathVariable("idP") int idP, Model model) {
         model.addAttribute("familyID", idF);
         model.addAttribute("addressId", idA);
         model.addAttribute("personId", idP);
         model.addAttribute("address", addressCRUDService.findAddressById(idA));
-        return "parentAddressInfo";
+        return "updateParentAddress";
     }
 
-    @PostMapping("/families/{idF}/parent/{idP}/address/{idA}/update")
+    @PostMapping("/families/{idF}/parent/{idP}/address/{idA}/updateAddress")
     public String updateParentAddress(@PathVariable("idF") int idF, @PathVariable("idA") int idA,
                                      @PathVariable("idP") int idP, @ModelAttribute Address address, Model model) {
         model.addAttribute("familyID", idF);

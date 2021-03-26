@@ -2,16 +2,16 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Parents Form</title>
+    <title>Child</title>
     <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" rel="stylesheet">
 </head>
 <body>
     <br>
-    <h2>Parent Update</h2>
+    <h2>Child Update</h2>
     <br>
-    <form action="#" th:action="@{/families/{idF}/person/{idP}/updateInfo(idF=${familyId},
-                                idP=${personId})}" th:object="${person}" method="post">
+    <form action="#" th:action="@{/families/{idF}/child/{idP}/updateCPR(idF=${familyId},
+                                    idP=${personId})}" th:object="${person}" method="post">
         <input type="hidden" th:value="${person.id}" name="id" readonly>
         <div class="form-group">
             <label class="col-sm-2 control-label">CPR</label>

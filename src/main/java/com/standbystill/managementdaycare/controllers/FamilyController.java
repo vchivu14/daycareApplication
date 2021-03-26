@@ -2,6 +2,7 @@ package com.standbystill.managementdaycare.controllers;
 
 import com.standbystill.managementdaycare.entities.Address;
 import com.standbystill.managementdaycare.entities.Family;
+import com.standbystill.managementdaycare.entities.Parent;
 import com.standbystill.managementdaycare.services.AddressCRUDService;
 import com.standbystill.managementdaycare.services.FamilyCRUDService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,47 @@ public class FamilyController {
         model.addAttribute("children", familyCRUDService.findChildrenForFamily(id));
         model.addAttribute("address", addressCRUDService.findAddressById(id));
         return "family";
+    }
+
+    @GetMapping("/families/{idF}/updateInfo")
+    public String getFamilyToUpdate(@PathVariable("idF") int idF, Model model) {
+        model.addAttribute("familyId", idF);
+        model.addAttribute("family", familyCRUDService.findFamilyById(idF));
+        return "updateFamilyInfo";
+    }
+
+    @PostMapping("/families/{idF}/updateInfo")
+    public String updateFamily(@PathVariable("idF") int idF, @ModelAttribute Family family, Model model) {
+        model.addAttribute("familyId", idF);
+        model.addAttribute("family", familyCRUDService.findFamilyById(idF));
+        boolean update = familyCRUDService.updateFamily(family,idF);
+        if (update) {
+            return new StringBuilder().append("redirect:/families/").append(idF).toString();
+        } else {
+            return "/error";
+        }
+    }
+
+    @GetMapping("/families/{idF}/address/{idA}/updateAddress")
+    public String getAddressToUpdate(@PathVariable("idF") int idF, @PathVariable("idA") int idA, Model model) {
+        model.addAttribute("familyID", idF);
+        model.addAttribute("addressId", idA);
+        model.addAttribute("address", addressCRUDService.findAddressById(idA));
+        return "updateFamilyAddress";
+    }
+
+    @PostMapping("/families/{idF}/address/{idA}/updateAddress")
+    public String updateFamilyAddress(@PathVariable("idF") int idF, @PathVariable("idA") int idA,
+                                      @ModelAttribute Address address, Model model) {
+        model.addAttribute("familyID", idF);
+        model.addAttribute("addressId", idA);
+        model.addAttribute("address", addressCRUDService.findAddressById(idA));
+        boolean update = addressCRUDService.updateAddress(address,idA);
+        if (update) {
+            return new StringBuilder().append("redirect:/families/").append(idF).toString();
+        } else {
+            return "/error";
+        }
     }
 
     @GetMapping("/families/{id}/delete")
