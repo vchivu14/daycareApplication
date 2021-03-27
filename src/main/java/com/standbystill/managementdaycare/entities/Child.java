@@ -2,6 +2,7 @@ package com.standbystill.managementdaycare.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Date;
 
 @Entity
 @IdClass(ChildID.class)
@@ -19,8 +20,6 @@ public class Child implements Serializable {
     private String firstName;
     @Column(name = "LastName")
     private String lastName;
-    @Column(name = "Age")
-    private int age;
 
     @Id
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -67,14 +66,6 @@ public class Child implements Serializable {
         this.lastName = lastName;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
     public Family getFamily() {
         return family;
     }
@@ -98,7 +89,6 @@ public class Child implements Serializable {
                 ", personId=" + personId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", age=" + age +
                 '}';
     }
 }

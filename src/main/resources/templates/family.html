@@ -29,28 +29,8 @@
             font-size: 1.2em;
         }
 
-        #mainbox{
-            font-family: calibri;
-            box-sizing: border-box;
-            justify-content: center;
-            display: flex;
-            flex-wrap: wrap;
-        }
-
-        .ups{
-            width:100%;
-            height:50%;
-            text-align:center;
-            margin-top:5em;
-        }
-
         #container {
             display: flex;
-        }
-
-        #item {
-            height: 100px;
-            width: 100px; /* A fixed width as the default */
         }
 
         #item-center {
@@ -75,9 +55,7 @@
                     <tr>
                         <th scope="col">
                             #Contact
-                        </th>
-                        <th scope="col">
-                            <td><a th:href="@{/families/{idF}/updateInfo(idF=${familyId})}"
+                        <td><a th:href="@{/families/{idF}/updateInfo(idF=${familyId})}"
                                class="btn btn-danger" aria-pressed="true" role="button">Update Info</a></td>
                         </th>
                     </tr>
@@ -146,7 +124,9 @@
                     <a th:href="@{/families/{idF}/address/parent(idF=${familyId})}"
                        class="btn btn-primary" aria-pressed="true" role="button">Add a Parent</a>
                 </section>
+
                 <br/>
+
                 <section class="container">
                     <h2>Children</h2>
                     <table class="order-table table">
@@ -181,9 +161,7 @@
                     <tr>
                         <th scope="col">
                             #Address
-                        </th>
-                        <th scope="col">
-                            <td><a th:href="@{/families/{idF}/address/{idA}/updateAddress(idF=${familyId}, idA=${address.id})}"
+                        <td><a th:href="@{/families/{idF}/address/{idA}/updateAddress(idF=${familyId}, idA=${address.id})}"
                                class="btn btn-danger" aria-pressed="true" role="button">Update Address</a></td>
                         </th>
                     </tr>

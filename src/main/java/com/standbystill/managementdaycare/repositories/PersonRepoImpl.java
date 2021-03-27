@@ -10,7 +10,9 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.util.Objects;
 
 @Repository
 public class PersonRepoImpl implements PersonRepo {
@@ -19,16 +21,18 @@ public class PersonRepoImpl implements PersonRepo {
 
     @Override
     public int addPerson(Person person, int addressId) {
-        int CPR = person.getCpr();
-        String sql = "INSERT INTO person (CPR, Address_id) VALUES (?,?)";
+        long CPR = person.getCpr();
+        Date dob = person.getDob();
+        String sql = "INSERT INTO person (CPR, DOB, Address_id) VALUES (?,?,?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(sql, new String[] {"id"});
             ps.setString(1, String.valueOf(CPR));
-            ps.setString(2, String.valueOf(addressId));
+            ps.setString(2, String.valueOf(dob));
+            ps.setString(3, String.valueOf(addressId));
             return ps;
         }, keyHolder);
-        return keyHolder.getKey().intValue();
+        return Objects.requireNonNull(keyHolder.getKey()).intValue();
     }
 
     @Override
@@ -40,7 +44,7 @@ public class PersonRepoImpl implements PersonRepo {
 
     @Override
     public boolean updatePerson(Person person, int personId) {
-        int cpr = person.getCpr();
+        long cpr = person.getCpr();
         String sql = "UPDATE person SET CPR = ? WHERE id = ?";
         return jdbcTemplate.update(sql,cpr,personId)>=0;
 

@@ -14,25 +14,26 @@
 
     <form action="#" th:action="@{/families/{idF}/address/{idA}/person/{idP}/child
                         (idF=${familyID}, idA=${addressId}, idP=${personId})}" th:object="${child}" method="post">
-        <div class="form-row">
-            <div class="col-xs-3 mb-3">
-                <label>First Name</label>
-                <input type="text" class="form-control" maxlength="25" id="fname" placeholder="First Name" required
-                       th:field="*{firstName}">
+        <fieldset>
+            <legend>Child Information</legend>
+
+            <div class="form-row">
+                <div class="col-xs-3 mb-3">
+                    <label>First Name</label>
+                    <input class="form-control" th:type="text" th:maxlength="25"
+                           id="firstName" placeholder="First Name" required th:field="*{firstName}">
+                </div>
+                <div class="col-xs-3 mb-3">
+                    <label>Last Name</label>
+                    <input class="form-control" th:type="text" th:maxlength="25"
+                           id="lastName" placeholder="Last Name" required th:field="*{lastName}">
+                </div>
             </div>
-            <div class="col-xs-3 mb-3">
-                <label>Last Name</label>
-                <input type="text" class="form-control" maxlength="25" id="lname" placeholder="Last Name" required
-                       th:field="*{lastName}">
-            </div>
-            <div class="col-xs-3 mb-3">
-                <label>Age</label>
-                <input type="number" pattern="[0-9]" class="form-control" maxlength="3" id="age" placeholder="Age" required
-                       th:field="*{age}">
-            </div>
-        </div>
-        <button class="btn btn-primary" type="submit">Submit</button>
+            <button class="btn btn-primary" type="submit">Submit</button>
+
+        </fieldset>
     </form>
+
     <br>
 
 </body>

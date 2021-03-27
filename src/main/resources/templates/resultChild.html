@@ -8,50 +8,42 @@
 </head>
 <body>
 
-<br>
-<p>Child successfully added</p>
-<br>
-<table class="table table-hover table-responsive table-sm">
-    <thead class="thead-light">
-    <tr>
-        <th scope="col">
-            #
-        </th>
-        <th scope="col">
-            Information
-        </th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <th scope="row">
-            <p>Last Name</p>
-        </th>
-        <th>
-            <p th:text="${child.getLastName()}"/>
-        </th>
-    </tr>
-    <tr>
-        <th scope="row">
-            <p>FirstName</p>
-        </th>
-        <th>
-            <p th:text="${child.getFirstName()}"/>
-        </th>
-    </tr>
-    <tr>
-        <th scope="row">
-            <p>Age</p>
-        </th>
-        <th>
-            <p th:text="${child.getAge()}"/>
-        </th>
-    </tr>
-    </tbody>
-</table>
-<br>
-<a th:href="@{/families/{id}(id=${familyID})}"
-   class="btn btn-success" aria-pressed="true" role="button">Continue To Family</a>
+    <br>
+    <p>Child successfully added</p>
+    <br>
+    <table class="table table-hover table-responsive table-sm">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">
+                #
+            </th>
+            <th scope="col">
+                Information
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">
+                <p>Last Name</p>
+            </th>
+            <th>
+                <p th:text="${child.getLastName()}"/>
+            </th>
+        </tr>
+        <tr>
+            <th scope="row">
+                <p>FirstName</p>
+            </th>
+            <th>
+                <p th:text="${child.getFirstName()}"/>
+            </th>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <a th:href="@{/families/{id}(id=${familyID})}"
+       class="btn btn-success" aria-pressed="true" role="button">Continue To Family</a>
 
 </body>
 </html>

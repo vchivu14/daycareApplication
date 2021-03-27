@@ -2,21 +2,19 @@ package com.standbystill.managementdaycare.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Date;
 
 @Entity
 @Table(name = "teacher", schema = "daycare12")
 public class Teacher implements Serializable {
     @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    @Column(name = "Staff_id")
+    private int staffId;
 
     @Column(name = "FirstName")
     private String firstName;
     @Column(name = "LastName")
     private String lastName;
-    @Column(name = "Age")
-    private int age;
     @Column(name = "Email")
     private String email;
     @Column(name = "Phone")
@@ -25,19 +23,24 @@ public class Teacher implements Serializable {
     @OneToOne(mappedBy = "teacher", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Class aClass;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "Address_id", insertable=false, updatable=false)
-    private Address address;
+    @Id
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "Staff_id", referencedColumnName = "id", insertable=false, updatable=false)
+    private Staff staff;
+
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "Person_id", referencedColumnName = "id", insertable=false, updatable=false)
+    private Person person;
 
     public Teacher() {
     }
 
-    public int getId() {
-        return id;
+    public int getStaffId() {
+        return staffId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setStaffId(int staffId) {
+        this.staffId = staffId;
     }
 
     public String getFirstName() {
@@ -56,14 +59,6 @@ public class Teacher implements Serializable {
         this.lastName = lastName;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -80,29 +75,12 @@ public class Teacher implements Serializable {
         this.phone = phone;
     }
 
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
-    public Class getaClass() {
-        return aClass;
-    }
-
-    public void setaClass(Class aClass) {
-        this.aClass = aClass;
-    }
-
     @Override
     public String toString() {
         return "Teacher{" +
-                "id=" + id +
+                ", staffId=" + staffId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", age=" + age +
                 ", email='" + email + '\'' +
                 ", phone=" + phone +
                 '}';

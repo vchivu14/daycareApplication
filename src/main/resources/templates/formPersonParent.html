@@ -7,21 +7,32 @@
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" rel="stylesheet">
 </head>
 <body>
-<br>
-<h2>Parent Registration</h2>
-<br>
-<div>
-    <form th:action="@{/families/{idF}/address/{idA}/person/parent(idF=${familyID}, idA=${addressId})}" th:object="${person}" method="post">
-        <div class="form-row">
-            <div class="col-xs-3 mb-3">
-                <label for="cpr">CPR
-                    <input type="number" pattern="[0-9]" th:maxlength="10" class="form-control" id="cpr" placeholder="CPR" required
-                           th:field="*{cpr}">
-                </label>
-            </div>
-        </div>
-        <button class="btn btn-primary" type="submit">Submit</button>
-    </form>
-</div>
+    <br>
+    <h2>Parent Registration</h2>
+    <br>
+    <div>
+        <form th:action="@{/families/{idF}/address/{idA}/person/parent(idF=${familyID}, idA=${addressId})}"
+              th:object="${person}" method="post">
+            <fieldset>
+                <legend>Person Information</legend>
+
+                <div class="form-row">
+                    <div class="col-xs-3 mb-3">
+                        <label>CPR</label>
+                        <input class="form-control" th:type="number" th:min="0101000001" th:maxlength="9999999999"
+                               id="cpr" placeholder="CPR" th:field="*{cpr}" required>
+                    </div>
+                    <div class="col-xs-3 mb-3">
+                        <label>Date of Birth</label>
+                        <input class="form-control" th:type="date"
+                               id="date" placeholder="Date of Birth" th:field="*{dob}" required>
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="submit">Submit</button>
+
+            </fieldset>
+        </form>
+    </div>
+
 </body>
 </html>

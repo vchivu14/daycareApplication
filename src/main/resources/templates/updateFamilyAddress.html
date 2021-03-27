@@ -13,30 +13,47 @@
     <br>
     <form action="#" th:action="@{/families/{idF}/address/{idA}/updateAddress(idF=${familyID},
                                     idA=${addressId})}" th:object="${address}" method="post">
-        <input type="hidden" th:value="${addressId}" name="id" readonly>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Street</label>
-            <div class="col-sm-4">
-                <input type="text" th:value="${address.street}" name="street"></td>
+        <fieldset>
+            <legend>Address Details</legend>
+            <input type="hidden" th:value="${addressId}" name="id" readonly>
+
+            <div class="col-sm-2">
+                <label class="col-sm-2 control-label">Street</label>
+                <input class="form-control" th:type="text"  th:maxlength="25"
+                       id="name" placeholder="Name" th:value="${address.street}" name="street">
             </div>
-            <label class="col-sm-2 control-label">Number</label>
-            <div class="col-sm-4">
-                <input type="number" th:value="${address.number}" name="number"></td>
+            <br/>
+            <div class="col-sm-2">
+                <label class="col-sm-2 control-label">Number</label>
+                <input class="form-control" th:type="number" th:min="1" th:max="99999"
+                       id="number" placeholder="Number" th:value="${address.number}" name="number">
             </div>
-            <label class="col-sm-2 control-label">City</label>
-            <div class="col-sm-4">
-                <input type="text" th:value="${address.city}" name="city"></td>
+            <br/>
+            <div class="col-sm-2">
+                <label class="col-sm-2 control-label">City</label>
+                <input class="form-control" th:type="text" th:maxlength="25" id="city"
+                       placeholder="City" th:value="${address.city}" name="city">
             </div>
-            <label class="col-sm-2 control-label">Zipcode</label>
-            <div class="col-sm-4">
-                <input type="number" th:value="${address.zipcode}" name="zipcode"></td>
+            <br/>
+            <div class="col-sm-2">
+                <label class="col-sm-2 control-label">Zipcode</label>
+                <input class="form-control" th:type="number" th:min="1" th:max="99999"
+                       id="zipcode" placeholder="Zipcode" th:value="${address.zipcode}" name="zipcode">
             </div>
-            <label class="col-sm-2 control-label">Country</label>
-            <div class="col-sm-4">
-                <input type="text" th:value="${address.country}" name="country"></td>
+            <br/>
+            <div class="col-sm-2">
+                <label class="col-sm-2 control-label">Country</label>
+                <input class="form-control" th:type="text" th:maxlength="25" id="country"
+                       placeholder="Country" th:value="${address.country}" name="country">
             </div>
-        </div>
-        <button class="btn btn-primary" type="submit">Submit</button>
+            <br/>
+            <div class="col-sm-offset-2 col-sm-10">
+                <div class="pull-right">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+
+        </fieldset>
     </form>
 
 </body>

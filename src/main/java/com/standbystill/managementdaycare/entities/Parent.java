@@ -2,6 +2,7 @@ package com.standbystill.managementdaycare.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @IdClass(ParentID.class)
@@ -19,12 +20,10 @@ public class Parent implements Serializable {
     private String firstName;
     @Column(name = "LastName")
     private String lastName;
-    @Column(name = "Age")
-    private int age;
     @Column(name = "Email")
     private String email;
     @Column(name = "Phone")
-    private int phone;
+    private long phone;
     @Column(name = "Income")
     private int income;
 
@@ -73,14 +72,6 @@ public class Parent implements Serializable {
         this.lastName = lastName;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -89,11 +80,11 @@ public class Parent implements Serializable {
         this.email = email;
     }
 
-    public int getPhone() {
+    public long getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(long phone) {
         this.phone = phone;
     }
 
@@ -128,7 +119,6 @@ public class Parent implements Serializable {
                 ", personId=" + personId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", age=" + age +
                 ", email='" + email + '\'' +
                 ", phone=" + phone +
                 ", income=" + income +

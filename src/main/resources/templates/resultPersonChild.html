@@ -7,11 +7,12 @@
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" rel="stylesheet">
 </head>
 <body>
-<br>
-<p>Person Created</p>
-<br>
-<a th:href="@{/families/{idF}/address/{idA}/person/{idP}/child(idF=${familyID}, idA=${addressId}, idP=${personId})}"
-   class="btn btn-success" aria-pressed="true" role="button">Continue Registration</a>
+
+    <br>
+    <p>Person Created</p>
+    <br>
+    <a th:href="@{/families/{idF}/address/{idA}/person/{idP}/child(idF=${familyID}, idA=${addressId}, idP=${personId})}"
+       class="btn btn-success" aria-pressed="true" role="button">Continue Registration</a>
 
 </body>
 </html>

@@ -90,10 +90,10 @@
             </tr>
             <tr>
                 <th scope="row">
-                    <p>Age</p>
+                    <p>Date of Birth</p>
                 </th>
                 <th>
-                    <p th:text="${child.getAge()}"/>
+                    <p th:text="${person.getDob()}"/>
                 </th>
             </tr>
             </tbody>
@@ -110,11 +110,8 @@
                 <tr>
                     <th scope="col">
                         #Address
-                    </th>
-                    <th scope="col">
-                    <td><a th:href="@{/families/{idF}/child/{idP}/address/{idA}/updateAddress(idF=${familyId},idP=${personId},
-                            idA=${address.id})}"
-                           class="btn btn-danger" aria-pressed="true" role="button">Update Address</a></td>
+                        <td><a th:href="@{/families/{idF}/child/{idP}/address/{idA}/updateAddress(idF=${familyId},idP=${personId},
+                            idA=${address.id})}" class="btn btn-danger" aria-pressed="true" role="button">Update Address</a></td>
                     </th>
                 </tr>
                 </thead>

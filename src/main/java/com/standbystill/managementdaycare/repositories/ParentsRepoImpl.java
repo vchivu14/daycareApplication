@@ -44,23 +44,21 @@ public class ParentsRepoImpl implements ParentsRepo {
     public void addParent(Parent parent, int familyId, int personId) {
         String lastName = parent.getLastName();
         String firstName = parent.getFirstName();
-        int age = parent.getAge();
         String email = parent.getEmail();
-        int phone = parent.getPhone();
+        long phone = parent.getPhone();
         int income = parent.getIncome();
-        String sql = "INSERT INTO parent (FirstName, LastName, Age, Email, Phone, Income, Family_id, Person_id) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO parent (FirstName, LastName, Email, Phone, Income, Family_id, Person_id) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(sql, new String[] {"id"});
             ps.setString(1,firstName);
             ps.setString(2,lastName);
-            ps.setString(3, String.valueOf(age));
-            ps.setString(4, email);
-            ps.setString(5, String.valueOf(phone));
-            ps.setString(6, String.valueOf(income));
-            ps.setString(7, String.valueOf(familyId));
-            ps.setString(8, String.valueOf(personId));
+            ps.setString(3, email);
+            ps.setString(4, String.valueOf(phone));
+            ps.setString(5, String.valueOf(income));
+            ps.setString(6, String.valueOf(familyId));
+            ps.setString(7, String.valueOf(personId));
             return ps;
         });
     }
@@ -69,12 +67,11 @@ public class ParentsRepoImpl implements ParentsRepo {
     public boolean updateParent(Parent parent, int personId) {
         String lastName = parent.getLastName();
         String firstName = parent.getFirstName();
-        int age = parent.getAge();
         String email = parent.getEmail();
-        int phone = parent.getPhone();
+        long phone = parent.getPhone();
         int income = parent.getIncome();
-        String sql = "UPDATE parent SET FirstName = ?, LastName = ?, Age = ?, Email = ?, Phone = ?, Income = ? WHERE Person_id = ?";
-        return jdbcTemplate.update(sql,firstName,lastName,age,email,phone,income,personId)>=0;
+        String sql = "UPDATE parent SET FirstName = ?, LastName = ?, Email = ?, Phone = ?, Income = ? WHERE Person_id = ?";
+        return jdbcTemplate.update(sql,firstName,lastName,email,phone,income,personId)>=0;
     }
 
     @Override

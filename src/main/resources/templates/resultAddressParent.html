@@ -8,66 +8,66 @@
 </head>
 <body>
 
-<br>
-<p>Address successfully added</p>
-<br>
-<table class="table table-hover table-responsive table-sm">
-    <thead class="thead-light">
-    <tr>
-        <th scope="col">
-            #
-        </th>
-        <th scope="col">
-            Information
-        </th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <th scope="row">
-            <p>Street</p>
-        </th>
-        <th>
-            <p th:text="${address.getStreet()}"/>
-        </th>
-    </tr>
-    <tr>
-        <th scope="row">
-            <p>No</p>
-        </th>
-        <th>
-            <p th:text="${address.getNumber()}"/>
-        </th>
-    </tr>
-    <tr>
-        <th scope="row">
-            <p>City</p>
-        </th>
-        <th>
-            <p th:text="${address.getCity()}"/>
-        </th>
-    </tr>
-    <tr>
-        <th scope="row">
-            <p>Zipcode</p>
-        </th>
-        <th>
-            <p th:text="${address.getZipcode()}"/>
-        </th>
-    </tr>
-    <tr>
-        <th scope="row">
-            <p>Country</p>
-        </th>
-        <th>
-            <p th:text="${address.getCountry()}"/>
-        </th>
-    </tr>
-    </tbody>
-</table>
-<br>
-<a th:href="@{/families/{idF}/address/{idA}/person/parent(idF=${familyID},idA=${addressId})}"
-   class="btn btn-success" aria-pressed="true" role="button">Continue Registration</a>
+    <br>
+    <p>Address successfully added</p>
+    <br>
+    <table class="table table-hover table-responsive table-sm">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">
+                #
+            </th>
+            <th scope="col">
+                Information
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">
+                <p>Street</p>
+            </th>
+            <th>
+                <p th:text="${address.getStreet()}"/>
+            </th>
+        </tr>
+        <tr>
+            <th scope="row">
+                <p>No</p>
+            </th>
+            <th>
+                <p th:text="${address.getNumber()}"/>
+            </th>
+        </tr>
+        <tr>
+            <th scope="row">
+                <p>City</p>
+            </th>
+            <th>
+                <p th:text="${address.getCity()}"/>
+            </th>
+        </tr>
+        <tr>
+            <th scope="row">
+                <p>Zipcode</p>
+            </th>
+            <th>
+                <p th:text="${address.getZipcode()}"/>
+            </th>
+        </tr>
+        <tr>
+            <th scope="row">
+                <p>Country</p>
+            </th>
+            <th>
+                <p th:text="${address.getCountry()}"/>
+            </th>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <a th:href="@{/families/{idF}/address/{idA}/person/parent(idF=${familyID},idA=${addressId})}"
+       class="btn btn-success" aria-pressed="true" role="button">Continue Registration</a>
 
 </body>
 </html>

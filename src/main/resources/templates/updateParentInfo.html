@@ -13,34 +13,42 @@
     <br>
     <form action="#" th:action="@{/families/{idF}/parent/{idP}/updateInfo(idF=${familyId},
                                 idP=${personId})}" th:object="${parent}" method="post">
-        <input type="hidden" th:value="${personId}" name="id" readonly>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">FirstName</label>
-            <div class="col-sm-4">
-                <input type="text" th:value="${parent.firstName}" name="firstName"></td>
-            </div>
-            <label class="col-sm-2 control-label">LastName</label>
-            <div class="col-sm-4">
-                <input type="text" th:value="${parent.lastName}" name="lastName"></td>
-            </div>
-            <label class="col-sm-2 control-label">Age</label>
-            <div class="col-sm-4">
-                <input type="number" th:value="${parent.age}" name="age"></td>
-            </div>
-            <label class="col-sm-2 control-label">Phone</label>
-            <div class="col-sm-4">
-                <input type="number" th:value="${parent.phone}" name="phone"></td>
-            </div>
-            <label class="col-sm-2 control-label">Email</label>
-            <div class="col-sm-4">
-                <input type="email" th:value="${parent.email}" name="email"></td>
-            </div>
-            <label class="col-sm-2 control-label">Income</label>
-            <div class="col-sm-4">
-                <input type="number" th:value="${parent.income}" name="income"></td>
-            </div>
-        </div>
-        <button class="btn btn-primary" type="submit">Submit</button>
+        <fieldset>
+            <legend>Parent Information</legend>
+
+                <div class="col-sm-2">
+                    <label>First Name</label>
+                    <input class="form-control" th:type="text" th:maxlength="25"
+                           id="firstName" placeholder="First Name" required th:value="${parent.firstName}" name="firstName">
+                </div>
+                <br/>
+                <div class="col-sm-2">
+                    <label>Last Name</label>
+                    <input class="form-control" th:type="text" th:maxlength="25"
+                           id="lastName" placeholder="Last Name" required th:value="${parent.lastName}" name="lastName">
+                </div>
+                <br/>
+                <div class="col-sm-2">
+                    <label>Email</label>
+                    <input class="form-control" type="email" th:maxlength="35"
+                           id="email" placeholder="Email" th:value="${parent.email}" name="email">
+                </div>
+                <br/>
+                <div class="col-sm-2">
+                    <label>Phone</label>
+                    <input class="form-control" th:type="number" th:min="11111111" th:maxlength="99999999"
+                           id="phone" placeholder="Phone" th:value="${parent.phone}" name="phone">
+                </div>
+                <br/>
+                <div class="col-sm-2">
+                    <label>Monthly Income</label>
+                    <input class="form-control" th:type="number" th:maxlength="9999999"
+                           id="income" placeholder="Income" th:value="${parent.income}" name="income">
+                </div>
+                <br/>
+                <button class="btn btn-primary" type="submit">Save</button>
+
+        </fieldset>
     </form>
 
 </body>

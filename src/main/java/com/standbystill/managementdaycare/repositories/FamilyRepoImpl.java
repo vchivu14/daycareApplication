@@ -17,6 +17,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Objects;
 
 @Repository
 public class FamilyRepoImpl implements FamilyRepo {
@@ -34,28 +35,24 @@ public class FamilyRepoImpl implements FamilyRepo {
     public int addFamily(Family family, int addressId) {
         String name = family.getName();
         Date date = family.getRegistration();
-        int phone = family.getPhone();
+        long phone = family.getPhone();
         String sql = "INSERT INTO family (Name, Registration, Phone, Address_id) VALUES (?,?,?,?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
-        jdbcTemplate.update(new PreparedStatementCreator() {
-            @Override
-            public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
-                PreparedStatement ps = connection.prepareStatement(sql, new String[] {"id"});
-                ps.setString(1, name);
-                ps.setString(2, String.valueOf(date));
-                ps.setString(3, String.valueOf(phone));
-                ps.setString(4, String.valueOf(addressId));
-                return ps;
-            }
+        jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement(sql, new String[] {"id"});
+            ps.setString(1, name);
+            ps.setString(2, String.valueOf(date));
+            ps.setString(3, String.valueOf(phone));
+            ps.setString(4, String.valueOf(addressId));
+            return ps;
         }, keyHolder);
-        int i = keyHolder.getKey().intValue();
-        return i;
+        return Objects.requireNonNull(keyHolder.getKey()).intValue();
     }
 
     @Override
     public boolean updateFamily(Family family, int familyId) {
         String name = family.getName();
-        int phone = family.getPhone();
+        long phone = family.getPhone();
         String sql = "UPDATE family SET Name = ?, Phone = ? WHERE id = ?";
         return jdbcTemplate.update(sql,name,phone,familyId)>=0;
     }

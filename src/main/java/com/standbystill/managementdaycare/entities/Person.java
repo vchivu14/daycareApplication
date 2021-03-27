@@ -2,6 +2,7 @@ package com.standbystill.managementdaycare.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Date;
 
 @Entity
 @Table(name = "person", schema = "daycare12")
@@ -12,10 +13,12 @@ public class Person implements Serializable {
     private int id;
 
     @Column(name = "CPR")
-    private int cpr;
+    private long cpr;
+    @Column(name = "DOB")
+    private Date dob;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "Address_id", insertable=false, updatable=false)
+    @JoinColumn(name = "Address_id", referencedColumnName = "id", insertable=false, updatable=false)
     private Address address;
 
     public Person() {
@@ -29,12 +32,20 @@ public class Person implements Serializable {
         this.id = id;
     }
 
-    public int getCpr() {
+    public long getCpr() {
         return cpr;
     }
 
-    public void setCpr(int cpr) {
+    public void setCpr(long cpr) {
         this.cpr = cpr;
+    }
+
+    public Date getDob() {
+        return dob;
+    }
+
+    public void setDob(Date dob) {
+        this.dob = dob;
     }
 
     public Address getAddress() {
@@ -50,7 +61,7 @@ public class Person implements Serializable {
         return "Person{" +
                 "id=" + id +
                 ", cpr=" + cpr +
-                ", address=" + address +
+                ", dob=" + dob +
                 '}';
     }
 }

@@ -8,74 +8,66 @@
 </head>
 <body>
 
-<br>
-<p>Parent successfully added</p>
-<br>
-<table class="table table-hover table-responsive table-sm">
-    <thead class="thead-light">
-    <tr>
-        <th scope="col">
-            #
-        </th>
-        <th scope="col">
-            Information
-        </th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <th scope="row">
-            <p>Last Name</p>
-        </th>
-        <th>
-            <p th:text="${parent.getLastName()}"/>
-        </th>
-    </tr>
-    <tr>
-        <th scope="row">
-            <p>FirstName</p>
-        </th>
-        <th>
-            <p th:text="${parent.getFirstName()}"/>
-        </th>
-    </tr>
-    <tr>
-        <th scope="row">
-            <p>Age</p>
-        </th>
-        <th>
-            <p th:text="${parent.getAge()}"/>
-        </th>
-    </tr>
-    <tr>
-        <th scope="row">
-            <p>Email</p>
-        </th>
-        <th>
-            <p th:text="${parent.getEmail()}"/>
-        </th>
-    </tr>
-    <tr>
-        <th scope="row">
-            <p>Phone</p>
-        </th>
-        <th>
-            <p th:text="${parent.getPhone()}"/>
-        </th>
-    </tr>
-    <tr>
-        <th scope="row">
-            <p>Income</p>
-        </th>
-        <th>
-            <p th:text="${parent.getIncome()}"/>
-        </th>
-    </tr>
-    </tbody>
-</table>
-<br>
-<a th:href="@{/families/{id}(id=${familyID})}"
-   class="btn btn-success" aria-pressed="true" role="button">Continue To Family</a>
+    <br>
+    <p>Parent successfully added</p>
+    <br>
+    <table class="table table-hover table-responsive table-sm">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">
+                #
+            </th>
+            <th scope="col">
+                Information
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">
+                <p>Last Name</p>
+            </th>
+            <th>
+                <p th:text="${parent.getLastName()}"/>
+            </th>
+        </tr>
+        <tr>
+            <th scope="row">
+                <p>FirstName</p>
+            </th>
+            <th>
+                <p th:text="${parent.getFirstName()}"/>
+            </th>
+        </tr>
+        <tr>
+            <th scope="row">
+                <p>Email</p>
+            </th>
+            <th>
+                <p th:text="${parent.getEmail()}"/>
+            </th>
+        </tr>
+        <tr>
+            <th scope="row">
+                <p>Phone</p>
+            </th>
+            <th>
+                <p th:text="${parent.getPhone()}"/>
+            </th>
+        </tr>
+        <tr>
+            <th scope="row">
+                <p>Income</p>
+            </th>
+            <th>
+                <p th:text="${parent.getIncome()}"/>
+            </th>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <a th:href="@{/families/{id}(id=${familyID})}"
+       class="btn btn-success" aria-pressed="true" role="button">Continue To Family</a>
 
 </body>
 </html>

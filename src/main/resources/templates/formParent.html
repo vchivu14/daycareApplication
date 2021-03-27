@@ -13,40 +13,47 @@
 
     <form action="#" th:action="@{/families/{idF}/address/{idA}/person/{idP}/parent(idF=${familyID}, idA=${addressId},
                                 idP=${personId})}" th:object="${parent}" method="post">
-        <div class="form-row">
-            <div class="col-xs-3 mb-3">
-                <label>First Name</label>
-                <input type="text" class="form-control" id="fname" placeholder="First Name" required
-                       th:field="*{firstName}">
+        <fieldset>
+            <legend>Parent Information</legend>
+
+            <div class="form-row">
+                <div class="col-xs-3 mb-3">
+                    <label>First Name</label>
+                    <input class="form-control" th:type="text" th:maxlength="25"
+                           id="firstName" placeholder="First Name" required th:field="*{firstName}">
+                </div>
+                <div class="col-xs-3 mb-3">
+                    <label>Last Name</label>
+                    <input class="form-control" th:type="text" th:maxlength="25"
+                           id="lastName" placeholder="Last Name" required th:field="*{lastName}">
+                </div>
             </div>
-            <div class="col-xs-3 mb-3">
-                <label>Last Name</label>
-                <input type="text" class="form-control" id="lname" placeholder="Last Name" required
-                       th:field="*{lastName}">
+            <div class="form-row">
+                <div class="col-xs-3 mb-3">
+                    <label>Email</label>
+                    <input class="form-control" type="email" th:maxlength="35"
+                           id="email" placeholder="Email" th:field="*{email}">
+                </div>
+                <div class="col-xs-3 mb-3">
+                    <label>Phone</label>
+                    <input class="form-control" th:type="number" th:min="11111111" th:maxlength="99999999"
+                           id="phone" placeholder="Phone" th:field="*{phone}" required>
+                </div>
             </div>
-            <div class="col-xs-3 mb-3">
-                <label>Age</label>
-                <input type="number"  class="form-control"  id="age" placeholder="Age" required
-                       th:field="*{age}">
+            <div class="form-row">
+                <div class="col-xs-3 mb-3">
+                    <label>Monthly Income</label>
+                    <input class="form-control" th:type="number" th:maxlength="9999999"
+                           id="income" placeholder="Income" th:field="*{income}" required>
+                </div>
             </div>
-            <div class="col-xs-3 mb-3">
-                <label>Email</label>
-                <input type="email" class="form-control" id="email" placeholder="Email" required
-                       th:field="*{email}">
+            <div class="form-row">
+                <button class="btn btn-primary" type="submit">Submit</button>
             </div>
-            <div class="col-xs-3 mb-3">
-                <label>Phone</label>
-                <input type="number" class="form-control" id="phone" placeholder="Phone" required
-                       th:field="*{phone}">
-            </div>
-            <div class="col-xs-3 mb-3">
-                <label>Income</label>
-                <input type="number"  class="form-control" id="income" placeholder="Monthly Income" required
-                       th:field="*{income}">
-            </div>
-        </div>
-        <button class="btn btn-primary" type="submit">Submit</button>
+
+        </fieldset>
     </form>
+
     <br>
 </body>
 </html>

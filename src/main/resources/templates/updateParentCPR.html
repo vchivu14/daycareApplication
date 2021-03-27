@@ -12,14 +12,25 @@
     <br>
     <form action="#" th:action="@{/families/{idF}/parent/{idP}/updateCPR(idF=${familyId},
                                 idP=${personId})}" th:object="${person}" method="post">
-        <input type="hidden" th:value="${person.id}" name="id" readonly>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">CPR</label>
-            <div class="col-sm-4">
-                <input type="text" th:value="${person.cpr}" name="cpr"></td>
+        <fieldset>
+            <legend>Person Information</legend>
+
+            <div class="form-row">
+                <div class="col-sm-2">
+                    <label>CPR</label>
+                    <input class="form-control" th:type="number" th:min="0101000001" th:maxlength="9999999999"
+                           id="cpr" placeholder="CPR" th:value="${person.cpr}" name="cpr">
+                </div>
+                <div class="col-sm-2">
+                    <label>Date of Birth</label>
+                    <input class="form-control" th:type="date"
+                           id="date" placeholder="Date of Birth" th:value="${person.dob}" name="dob">
+                </div>
             </div>
-        </div>
-        <button class="btn btn-primary" type="submit">Submit</button>
+            <br/>
+            <button class="btn btn-primary" type="submit">Save</button>
+
+        </fieldset>
     </form>
 </body>
 </html>

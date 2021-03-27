@@ -18,7 +18,7 @@ public class Family implements Serializable {
     @Column(name = "Registration")
     private Date registration;
     @Column(name = "Phone")
-    private int phone;
+    private long phone;
 
     @OneToMany(mappedBy = "familyId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Collection<Parent> parents;
@@ -62,11 +62,11 @@ public class Family implements Serializable {
         this.registration = registration;
     }
 
-    public int getPhone() {
+    public long getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(long phone) {
         this.phone = phone;
     }
 

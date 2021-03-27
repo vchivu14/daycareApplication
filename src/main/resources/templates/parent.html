@@ -98,10 +98,10 @@
             </tr>
             <tr>
                 <th scope="row">
-                    <p>Age</p>
+                    <p>Date of Birth</p>
                 </th>
                 <th>
-                    <p th:text="${parent.getAge()}"/>
+                    <p th:text="${person.getDob()}"/>
                 </th>
             </tr>
             <tr>
@@ -144,11 +144,9 @@
                     <tr>
                         <th scope="col">
                             #Address
-                        </th>
-                        <th scope="col">
-                        <td><a aria-pressed="true"
-                               class="btn btn-danger" role="button" th:href="@{/families/{idF}/parent/{idP}/address/{idA}/updateAdress(idF=${familyId},idP=${personId},
-                                idA=${address.id})}">Update Address</a></td>
+                            <td><a aria-pressed="true" class="btn btn-danger" role="button"
+                                   th:href="@{/families/{idF}/parent/{idP}/address/{idA}/updateAddress(idF=${familyId},
+                                   idP=${personId}, idA=${address.id})}">Update Address</a></td>
                         </th>
                     </tr>
                     </thead>

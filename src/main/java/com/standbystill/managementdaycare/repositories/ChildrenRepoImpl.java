@@ -43,15 +43,13 @@ public class ChildrenRepoImpl implements ChildrenRepo {
     public void addChild(Child child, int familyId, int personId) {
         String lastName = child.getLastName();
         String firstName = child.getFirstName();
-        int age = child.getAge();
-        String sql = "INSERT INTO child (FirstName, LastName, Age, Family_id, Person_id) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO child (FirstName, LastName, Family_id, Person_id) VALUES (?, ?, ?, ?)";
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(sql, new String[] {"id"});
             ps.setString(1,firstName);
             ps.setString(2,lastName);
-            ps.setString(3, String.valueOf(age));
-            ps.setString(4, String.valueOf(familyId));
-            ps.setString(5, String.valueOf(personId));
+            ps.setString(3, String.valueOf(familyId));
+            ps.setString(4, String.valueOf(personId));
             return ps;
         });
     }
@@ -60,9 +58,8 @@ public class ChildrenRepoImpl implements ChildrenRepo {
     public boolean updateChild(Child child, int personId) {
         String lastName = child.getLastName();
         String firstName = child.getFirstName();
-        int age = child.getAge();
-        String sql = "UPDATE child SET FirstName = ?, LastName = ?, Age = ? WHERE Person_id = ?";
-        return jdbcTemplate.update(sql,firstName,lastName,age,personId)>=0;
+        String sql = "UPDATE child SET FirstName = ?, LastName = ? WHERE Person_id = ?";
+        return jdbcTemplate.update(sql,firstName,lastName,personId)>=0;
     }
 
     @Override
